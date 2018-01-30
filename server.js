@@ -3,14 +3,15 @@ const
   app = express(),
   ejsLayouts = require('express-ejs-layouts'),
   mongoose = require('mongoose'),
+  flash = require('connect-flash'),
   logger = require('morgan'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
   session = require('express-session'),
   MongoDBStore = require('connect-mongodb-session')(session),
   passport = require('passport'),
-  passportConfig = require('...'),
-  Album = require('./models/Guru.js')
+  passportConfig = require('./config/passport.js'),
+  userRouter = new express.Router()
 
 // environment port
 const
@@ -72,3 +73,45 @@ app.post('/gurus', (req,res) => {
 app.listen(port, (err) => {
   console.log(err || "Running on port: " + port)
 })
+
+
+/// USER AUTHENTICATION =====================
+//is USer logged in?
+function isLoggedIn( req, res, next){
+  if(req.isAuthenticated()) return next()
+  res.redirect('/login')
+}
+
+/////USER ROUTES ------
+// LOGIN -------- 
+userRouter.get('/login', (req, res) => {
+  res.render('login')
+})
+
+userRouter.post('/login', passport.authenticate('local-login', {
+  successRedirect: '/profile',
+  failureRedirect: '/login'
+}) )
+
+// SIGNUP ------- 
+userRouter.get('/signup', (req, res) => {
+  res.render('signup')
+})
+
+userRouter.post('/signup', passport.authenticate('local-signup', {
+  successRedirect: '/profile',
+  failureRedirect: '/signup'
+}) )
+
+// PROFILE ------- 
+userRouter.get('/profile', isLoggedIn, (req, res) => {
+  res.render('profile', {user: req.user})
+})
+
+// LOGOUT ------- 
+userRouter.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
+
+module.exports = userRouter
