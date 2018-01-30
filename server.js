@@ -3,15 +3,14 @@ const
   app = express(),
   ejsLayouts = require('express-ejs-layouts'),
   mongoose = require('mongoose'),
-  
   logger = require('morgan'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
   session = require('express-session'),
   MongoDBStore = require('connect-mongodb-session')(session),
-  
   passport = require('passport'),
-  passportConfig = require('...')
+  passportConfig = require('...'),
+  Album = require('./models/Guru.js')
 
 // environment port
 const
@@ -52,6 +51,22 @@ app.use(passport.session())
 // root route
 app.get('/', (req, res) => {
   res.render("find your best guru")
+})
+
+app.get('/gurus', (req, res) => {
+  Guru.find({}, (err, allDemGurus) => {
+    if(err) return console.log(err)
+    res.json(allDemGurus)
+  })
+})
+
+app.post('/gurus', (req,res) => {
+  var newGuru = new Guru(req.body)
+  newGuru.save((err, brandNewGuru) => {
+    if(err) return console.log(err)
+    res.json({message: "Guru born! ", guru: brandNewGuru})
+  })
+  
 })
 
 app.listen(port, (err) => {
