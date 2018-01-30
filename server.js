@@ -11,7 +11,8 @@ const
   MongoDBStore = require('connect-mongodb-session')(session),
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
-  userRouter = new express.Router()
+  userRouter = new express.Router(),
+  Guru = require('./models/Guru.js')
 
 // environment port
 const

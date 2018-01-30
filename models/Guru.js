@@ -6,11 +6,11 @@ const
   guruSchema = new mongoose.Schema({
     name: {type: 'string', required: true},
     email: {type: 'string'},
-    activities: [activitySchema],
+    activities: {type: [activitySchema], required: true},
     studio: [String],
-    Reviews: [String],
-    Picture: {type: 'string'}
+    reviews: [String],
+    picture: {type: 'string'}
   })
 
 const Guru = mongoose.model('Guru', guruSchema)
-module.exports = Album
+module.exports = Guru
