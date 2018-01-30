@@ -12,6 +12,5 @@ const
     Picture: {type: 'string'}
   })
 
-
 const Guru = mongoose.model('Guru', guruSchema)
 module.exports = Album
