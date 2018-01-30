@@ -11,7 +11,8 @@ const
   MongoDBStore = require('connect-mongodb-session')(session),
   
   passport = require('passport'),
-  passportConfig = require('...')
+  passportConfig = require('...'),
+  userRouter = new express.Router()
 
 // environment port
 const
@@ -57,3 +58,45 @@ app.get('/', (req, res) => {
 app.listen(port, (err) => {
   console.log(err || "Running on port: " + port)
 })
+
+
+/// USER AUTHENTICATION =====================
+//is USer logged in?
+function isLoggedIn( req, res, next){
+  if(req.isAuthenticated()) return next()
+  res.redirect('/login')
+}
+
+/////USER ROUTES ------
+// LOGIN -------- 
+userRouter.get('/login', (req, res) => {
+  res.render('login')
+})
+
+userRouter.post('/login', passport.authenticate('local-login', {
+  successRedirect: '/profile',
+  failureRedirect: '/login'
+}) )
+
+// SIGNUP ------- 
+userRouter.get('/signup', (req, res) => {
+  res.render('signup')
+})
+
+userRouter.post('/signup', passport.authenticate('local-signup', {
+  successRedirect: '/profile',
+  failureRedirect: '/signup'
+}) )
+
+// PROFILE ------- 
+userRouter.get('/profile', isLoggedIn, (req, res) => {
+  res.render('profile', {user: req.user})
+})
+
+// LOGOUT ------- 
+userRouter.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
+
+module.exports = userRouter
