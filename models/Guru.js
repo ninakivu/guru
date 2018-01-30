@@ -1,16 +1,13 @@
 const
   mongoose = require('mongoose')
-  activitySchema = new mongoose.Schema({
-    type: {type: 'string'}
-  })
   guruSchema = new mongoose.Schema({
-    name: {type: 'string', required: true},
+    name: {type: 'string'},
     email: {type: 'string'},
-    activities: [activitySchema],
+    activities: [{type: mongoose.Schema.Types.ObjectId, ref: 'Activity'}], 
     studio: [String],
-    Reviews: [String],
-    Picture: {type: 'string'}
+    reviews: [String],
+    picture: {type: 'string'}
   })
 
 const Guru = mongoose.model('Guru', guruSchema)
-module.exports = Album
+module.exports = Guru
