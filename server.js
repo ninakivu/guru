@@ -12,7 +12,8 @@ const
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
   userRouter = new express.Router(),
-  Guru = require('./models/Guru.js')
+  Guru = require('./models/Guru.js'),
+  Activity = require('./models/Activity.js')
 
 // environment port
 const
@@ -52,9 +53,10 @@ app.use(passport.session())
 
 // root route
 app.get('/', (req, res) => {
-  res.render("find your best guru")
+  res.send("Find your best guru")
 })
 
+// Get all gurus:
 app.get('/gurus', (req, res) => {
   Guru.find({}, (err, allDemGurus) => {
     if(err) return console.log(err)
@@ -62,8 +64,13 @@ app.get('/gurus', (req, res) => {
   })
 })
 
+// Create a guru:
 app.post('/gurus', (req,res) => {
   var newGuru = new Guru(req.body)
+  newGuru.name = req.body.name
+  Activity.find({type: req.body.activities}, (err, thatActivity) => {
+    newGuru.activities = thatActivity._id
+  })
   newGuru.save((err, brandNewGuru) => {
     if(err) return console.log(err)
     res.json({message: "Guru born! ", guru: brandNewGuru})
@@ -71,10 +78,44 @@ app.post('/gurus', (req,res) => {
   
 })
 
+// Show a specific Guru:
+app.get('/gurus/:id', (req, res) => {
+  Guru.findById(req.params.id, (err, thatGuru) => {
+    res.json(thatGuru)
+  })
+})
+
+// Show all activities:
+app.get('/activities', (req, res) => {
+  Activity.find({}, (err, allDemActivities) => {
+    res.json(allDemActivities)
+  })
+})
+
+// Show a specific activity:
+app.get('/activities/:id', (req, res) => {
+  Activity.findById(req.params.id, (err, datActivity) => {
+    res.json(datActivity)
+  })
+})
+
+// Create activity:
+app.post('/activities', (req, res) => {
+  Activity.create(req.body, (err, brandNewActivity) => {
+    res.json({message: "Activity created", Activity: brandNewActivity})
+  })
+})
+
+// Index of al GURUs for certain activity:
+app.get('/activities/:id/gurus', (req, res) => {
+  Guru.find({activities: req.params.id}, (err, allGuruForThis) => {
+    res.json(allGuruForThis)
+  })
+})
+
 app.listen(port, (err) => {
   console.log(err || "Running on port: " + port)
 })
-
 
 /// USER AUTHENTICATION =====================
 //is USer logged in?

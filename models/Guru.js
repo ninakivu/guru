@@ -1,12 +1,9 @@
 const
   mongoose = require('mongoose')
-  activitySchema = new mongoose.Schema({
-    type: {type: 'string'}
-  })
   guruSchema = new mongoose.Schema({
-    name: {type: 'string', required: true},
+    name: {type: 'string'},
     email: {type: 'string'},
-    activities: {type: [activitySchema], required: true},
+    activities: [{type: mongoose.Schema.Types.ObjectId, ref: 'Activity'}], 
     studio: [String],
     reviews: [String],
     picture: {type: 'string'}
