@@ -3,7 +3,7 @@ const
   app = express(),
   ejsLayouts = require('express-ejs-layouts'),
   mongoose = require('mongoose'),
-  
+  flash = require('connect-flash'),
   logger = require('morgan'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
@@ -11,7 +11,7 @@ const
   MongoDBStore = require('connect-mongodb-session')(session),
   
   passport = require('passport'),
-  passportConfig = require('...'),
+  passportConfig = require('./config/passport.js'),
   userRouter = new express.Router()
 
 // environment port
