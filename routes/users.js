@@ -7,38 +7,38 @@ const
 
 function isLoggedIn( req, res, next){
     if(req.isAuthenticated()) return next()
-    res.redirect('/login')
+    res.redirect('/user-login')
 }
 
 // LOGIN -------- 
-userRouter.get('/login', (req, res) => {
-    res.render('login')
+userRouter.get('/user-login', (req, res) => {
+    res.render('user-login')
 })
 
-userRouter.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/profile',
-    failureRedirect: '/login'
+userRouter.post('/user-login', passport.authenticate('user-local-login', {
+    successRedirect: '/user-profile',
+    failureRedirect: '/user-login'
 }) )
 
 // SIGNUP ------- 
-userRouter.get('/signup', (req, res) => {
-    res.render('signup')
+userRouter.get('/user-signup', (req, res) => {
+    res.render('user-signup')
 })
 
-userRouter.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/profile',
-    failureRedirect: '/signup'
+userRouter.post('/user-signup', passport.authenticate('user-local-signup', {
+    successRedirect: '/user-profile',
+    failureRedirect: '/user-signup'
 }) )
 
 // PROFILE ------- 
-userRouter.get('/profile', isLoggedIn, (req, res) => {
+userRouter.get('/user-profile', isLoggedIn, (req, res) => {
 
     //^^^^^^^^^^^^^^ checks middleware for Logged-in, if True, continue to 'NEXT'
-    res.render('profile', {user: req.user})
+    res.render('user-profile', {user: req.user})
 })
 
 // LOGOUT ------- 
-userRouter.get('/logout', (req, res) => {
+userRouter.get('/user-logout', (req, res) => {
     req.logout()
     res.redirect('/')
 })

@@ -11,26 +11,31 @@ mongoose.connect(mongoConnectionString, (err) => {
   var gurus = [
     {
       name: "Mark Strong",
+      password: "password123",
       email: "mark@guru.com",
       studio: "Get Strong West LA"
     },
     {
       name: "Philippe",
+      password: "password123",
       email: "philippe@guru.com",
       studio: "Brutal Gym"
     },
     {
       name: "Dylan",
+      password: "password123",
       email: "dylan@guru.com",
       studio: "Get Shredded"
     },
     {
       name: "Ninja",
+      password: "password123",
       email: "ninja@guru.com",
       studio: "Ninja"
     },
     {
       name: "Jimmy",
+      password: "password123",
       email: "jimmy@guru.com",
       studio: "Take Breaks"
     },

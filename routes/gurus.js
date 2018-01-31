@@ -10,16 +10,16 @@ function isLoggedIn(req, res, next) {
 }
 
 guruRouter.get('/guru-login', (req, res) => {
-  res.render('login')
+  res.render('guru-login')
 })
 
-guruRouter.post('/guru-login', passport.authenticate('local-login', {
+guruRouter.post('/guru-login', passport.authenticate('guru-local-login', {
   successRedirect: '/guru-profile',
   failureRedirect: '/guru-login'
 }))
 
 guruRouter.get('/guru-signup', (req, res) => {
-  res.render('signup')
+  res.render('guru-signup')
 })
 
 guruRouter.post('/guru-signup', passport.authenticate('guru-local-signup', {
@@ -28,7 +28,7 @@ guruRouter.post('/guru-signup', passport.authenticate('guru-local-signup', {
 }))
 
 guruRouter.get('/guru-profile', isLoggedIn, (req, res) => {
-  res.render('profile', {guru: req.guru})
+  res.render('guru-profile', {guru: req.user})
 })
 
 guruRouter.get('/guru-logout', (req, res) => {

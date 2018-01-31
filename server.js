@@ -63,7 +63,7 @@ app.use(passport.session())
 //is User logged in?
 function isLoggedIn( req, res, next){
   if(req.isAuthenticated()) return next()
-  res.redirect('/login')
+  res.redirect('/user-login')
 }
 
 // root route
