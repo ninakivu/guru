@@ -2,7 +2,9 @@
 const
   express = require('express'),
   app = express(),
-  guruRouter = new express.Router()
+  guruRouter = new express.Router(),
+  Guru = require('../models/Guru.js'),
+  Activity = require('../models/Activity.js')
 
 function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()) return next()
@@ -36,34 +38,6 @@ guruRouter.get('/guru-logout', (req, res) => {
   res.redirect('/')
 })
 
-// Get all gurus:
-guruRouter.get('/', (req, res) => {
-  Guru.find({}, (err, allDemGurus) => {
-    if(err) return console.log(err)
-    res.json(allDemGurus)
-  })
-})
-
-// Create a guru:
-guruRouter.post('/', (req,res) => {
-  var newGuru = new Guru(req.body)
-  newGuru.name = req.body.name
-  Activity.find({type: req.body.activities}, (err, thatActivity) => {
-    newGuru.activities = thatActivity._id
-  })
-  newGuru.save((err, brandNewGuru) => {
-    if(err) return console.log(err)
-    res.json({message: "Guru born! ", guru: brandNewGuru})
-  })
-  
-})
-
-// Show a specific Guru:
-guruRouter.get('/:id', (req, res) => {
-  Guru.findById(req.params.id, (err, thatGuru) => {
-    res.json(thatGuru)
-  })
-})
 
 
 module.exports = guruRouter
