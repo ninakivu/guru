@@ -11,7 +11,9 @@ function isLoggedIn( req, res, next){
     res.redirect('/login')
 }
 
-// userRouter.get('/')
+
+
+
 
 // LOGIN -------- 
 userRouter.get('/login', (req, res) => {
@@ -35,6 +37,7 @@ userRouter.post('/signup', passport.authenticate('local-signup', {
 
 // PROFILE ------- 
 userRouter.get('/profile', isLoggedIn, (req, res) => {
+                        //^^^^^^^^^^^^^^ checks middleware for Logged-in, if True, continue to 'NEXT'
     res.render('profile', {user: req.user})
 })
 

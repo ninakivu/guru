@@ -52,7 +52,7 @@ app.use(passport.session())
 
 // root route
 app.get('/', (req, res) => {
-  res.render("find your best guru")
+  res.render('splash')
 })
 
 app.get('/gurus', (req, res) => {
@@ -76,7 +76,7 @@ app.listen(port, (err) => {
 })
 
 
-/// USER AUTHENTICATION =====================
+/// USER AUTHORIZATION =====================
 //is User logged in?
 function isLoggedIn( req, res, next){
   if(req.isAuthenticated()) return next()
