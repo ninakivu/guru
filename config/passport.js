@@ -43,6 +43,7 @@ const
             if(err) return done(err) 
             if(!user) return done(null, false, req.flash('loginMessage', 'No user found...')) //user not found...do not proceed
             if(!user.validPassword(password)) return done(null, false, req.flash('loginMessage', 'incorrect password'))//password not valid...do not proceed
+            return done(null, user)
         })
     }))
 

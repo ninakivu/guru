@@ -9,11 +9,13 @@ const
   bodyParser = require('body-parser'),
   session = require('express-session'),
   MongoDBStore = require('connect-mongodb-session')(session),
+
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
-  userRouter = new express.Router(),
+  //userRouter = new express.Router(),
   Guru = require('./models/Guru.js'),
   Activity = require('./models/Activity.js')
+  indexRoutes = require('./routes/index.js')
 
 // environment port
 const
@@ -53,7 +55,7 @@ app.use(passport.session())
 
 // root route
 app.get('/', (req, res) => {
-  res.send("Find your best guru")
+  res.render('splash')
 })
 
 // Get all gurus:
@@ -117,43 +119,17 @@ app.listen(port, (err) => {
   console.log(err || "Running on port: " + port)
 })
 
-/// USER AUTHENTICATION =====================
-//is USer logged in?
+
+/// USER AUTHORIZATION =====================
+//is User logged in?
 function isLoggedIn( req, res, next){
   if(req.isAuthenticated()) return next()
   res.redirect('/login')
 }
 
-/////USER ROUTES ------
-// LOGIN -------- 
-userRouter.get('/login', (req, res) => {
-  res.render('login')
-})
+/////INDEX ROUTES ------
 
-userRouter.post('/login', passport.authenticate('local-login', {
-  successRedirect: '/profile',
-  failureRedirect: '/login'
-}) )
+app.use('/', indexRoutes)
 
-// SIGNUP ------- 
-userRouter.get('/signup', (req, res) => {
-  res.render('signup')
-})
 
-userRouter.post('/signup', passport.authenticate('local-signup', {
-  successRedirect: '/profile',
-  failureRedirect: '/signup'
-}) )
 
-// PROFILE ------- 
-userRouter.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile', {user: req.user})
-})
-
-// LOGOUT ------- 
-userRouter.get('/logout', (req, res) => {
-  req.logout()
-  res.redirect('/')
-})
-
-module.exports = userRouter
