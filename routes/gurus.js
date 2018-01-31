@@ -2,7 +2,9 @@
 const
   express = require('express'),
   app = express(),
-  guruRouter = new express.Router()
+  guruRouter = new express.Router(),
+  Guru = require('../models/Guru.js'),
+  Activity = require('../models/Activity.js')
 
 function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()) return next()

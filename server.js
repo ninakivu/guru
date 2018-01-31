@@ -13,7 +13,7 @@ const
   passportConfig = require('./config/passport.js'),
   userRoutes = require('./routes/users.js'),
   guruRoutes = require('./routes/gurus.js'),
-  activityRoutes = require('./routes/activities.js')
+  activityRoutes = require('./routes/activities.js'),
 
   Guru = require('./models/Guru.js'),
   Activity = require('./models/Activity.js')

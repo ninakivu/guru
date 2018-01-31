@@ -37,6 +37,16 @@ userRouter.get('/user-profile', isLoggedIn, (req, res) => {
     res.render('user-profile', {user: req.user})
 })
 
+// PROFILE - EDIT --------------
+userRouter.get('/user-edit', isLoggedIn, (req, res) => {
+
+    //^^^^^^^^^^^^^^ checks middleware for Logged-in, if True, continue to 'NEXT'
+    res.render('user-edit', {user: req.user})
+})
+
+
+
+
 // LOGOUT ------- 
 userRouter.get('/user-logout', (req, res) => {
     req.logout()
