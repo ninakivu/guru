@@ -14,6 +14,8 @@ const
   userRoutes = require('./routes/users.js'),
   guruRoutes = require('./routes/gurus.js'),
   activityRoutes = require('./routes/activities.js'),
+  gurusAllRoutes = require('./routes/gurusAll.js'),
+  
 
   Guru = require('./models/Guru.js'),
   Activity = require('./models/Activity.js')
@@ -72,8 +74,11 @@ app.get('/', (req, res) => {
 /////USERS ROUTES ------
 app.use('/', userRoutes)
 
-// Guru Routes:
-app.use('/gurus', guruRoutes)
+// Guru Login Routes:
+app.use('/', guruRoutes)
+
+// Gurus All Routes:
+app.use('/gurus', gurusAllRoutes)
 
 // Activity Routes:
 app.use('/activities', activityRoutes)
