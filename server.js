@@ -12,8 +12,8 @@ const
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
   userRoutes = require('./routes/users.js'),
-  guruRoutes = require('./routes/gurus.js')
-  //userRouter = new express.Router(),
+  guruRoutes = require('./routes/gurus.js'),
+  activityRoutes = require('./routes/activities.js')
 
   Guru = require('./models/Guru.js'),
   Activity = require('./models/Activity.js')
@@ -57,8 +57,6 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-
-
 /// USER AUTHORIZATION =====================
 //is User logged in?
 function isLoggedIn( req, res, next){
@@ -75,7 +73,10 @@ app.get('/', (req, res) => {
 app.use('/', userRoutes)
 
 // Guru Routes:
-app.use('/', guruRoutes)
+app.use('/gurus', guruRoutes)
+
+// Activity Routes:
+app.use('/activities', activityRoutes)
 
 
 app.listen(port, (err) => {
