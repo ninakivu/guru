@@ -7,32 +7,32 @@
 </div>
 
 
-<form>
+<form method="POST" action="/user-edit?_method=PATCH" enctype="application/x-www-form-urlencoded">
     <div class="form-group">
             <label for="exampleInputNamel1">Name</label>
-            <input type="name" class="form-control" id="user-name" aria-describedby="nameHelp" placeholder="Enter name">
+            <input type="name" class="form-control"   id="user-name" name="name" value="<%= user.name %>" aria-describedby="nameHelp" placeholder="Enter name">
             <small id="NameHelp" class="form-text text-muted">Our Member</small>
     </div>
 
   
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp" placeholder="Enter email">
+      <input type="email" class="form-control" id="user-email" name="email" value="<%= user.email %>" aria-describedby="emailHelp" placeholder="Enter email">
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="user-password" placeholder="Password">
+      <input type="password" class="form-control" id="user-password" name="password" placeholder="Password">
     </div>
 
     <div class="form-group">
             <label for="exampleInputZipl1">Zip Code</label>
-            <input type="zipcode" class="form-control" id="user-zip" aria-describedby="zipcodeHelp" placeholder="Zip Code">
+            <input type="zipcode" class="form-control" id="user-zip" name="zip" value="<%= user.zip %>" aria-describedby="zipcodeHelp" placeholder="Zip Code">
             <small id="ZipCodeHelp" class="form-text text-muted"></small>
     </div>
 
     <div class="form-group">
-            <input type="radio" name="sex" value="male" checked> Male
+            <input type="radio" name="sex" value="male" > Male
             <br>
             <input type="radio" name="sex" value="female"> Female
             <br>
@@ -40,15 +40,29 @@
             <br>
             <br>
     </div>
-    
+    <div class="form-group">
+        <label for="exampleInputZipl1">Profile Picture URL:</label>
+        <input type="profileURL" class="form-control" id="user-pictureURL" name="picture_url" value="<%= user.picture_url %>" aria-describedby="profileURLHelp" placeholder="Profile URL">
+        <small id="profileURLHelp" class="form-text text-muted"></small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputZipl1">Background Picture URL:</label>
+        <input type="backgroundURL" class="form-control" id="user-backgroundURL" name="background_url" value="<%= user.background_url %>" aria-describedby="backgroundURLHelp" placeholder="Background Picture URL">
+        <small id="backgroundURLHelp" class="form-text text-muted"></small>
+    </div>
     <!-- <div class="form-check">
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>-->
 
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Update Profile</button>
   </form>
+  <br>
+  <button type="submit" class="btn btn-primary">Delete Profile</button>
+  <br>
+  <br>
 
+  <a href="/user-profile">Return to Profile</a>
 
-  <script src="/js/app-user.js"></script>
+ <!-- <script src="./js/app-user.js"></script> -->

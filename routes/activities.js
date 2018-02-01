@@ -3,11 +3,7 @@
 const
   express = require('express'),
   app = express(),
-<<<<<<< HEAD
   activityRouter = new express.Router(),
-=======
-  activityRouter = new express.Router(),  
->>>>>>> 23193db98f1482fb3f0576fddd1f7f1ec345a891
   Guru = require('../models/Guru.js'),
   Activity = require('../models/Activity.js')
 
