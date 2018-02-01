@@ -14,8 +14,9 @@ const
   userRoutes = require('./routes/users.js'),
   guruRoutes = require('./routes/gurus.js'),
   activityRoutes = require('./routes/activities.js'),
+  methodOverride = require('method-override'),
   gurusAllRoutes = require('./routes/gurusAll.js'),
-  
+
 
   Guru = require('./models/Guru.js'),
   Activity = require('./models/Activity.js')
@@ -44,6 +45,7 @@ app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(flash())
+app.use(methodOverride('_method'))  //Method Override
 
 // ejs configuration
 app.set('view engine', 'ejs')
