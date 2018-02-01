@@ -84,6 +84,17 @@ userRouter.patch('/user-edit', isLoggedIn, (req, res) => {
     res.redirect('/user-profile')
 })// END EDIT/PATCH --------------
 
+// PROFILE - DELETE --------------
+userRouter.delete('/user-delete', isLoggedIn, (req, res) => {
+    
+    User.findByIdAndRemove(req.user.id, (err, destroyedUser) => {    
+        if(err) return console.log(err)                     
+        console.log('DESTROYED USER:   ', destroyedUser)
+        req.logout()
+        res.redirect('/')
+    })   //end FindBy       
+    
+})// END DELETE -----
 
 
 // LOGOUT ------- 

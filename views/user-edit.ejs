@@ -59,10 +59,14 @@
     <button type="submit" class="btn btn-primary">Update Profile</button>
   </form>
   <br>
-  <button type="submit" class="btn btn-primary">Delete Profile</button>
+  <form method="POST" action="/user-delete?_method=DELETE" enctype="application/x-www-form-urlencoded">
+      <button type="submit" id="deleteProfileBtn" class="btn btn-secondary">Delete Profile</button>
+  </form>
   <br>
   <br>
 
   <a href="/user-profile">Return to Profile</a>
+  <br>
+  <br>
 
  <!-- <script src="./js/app-user.js"></script> -->
