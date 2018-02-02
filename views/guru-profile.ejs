@@ -1,23 +1,24 @@
 <div class="page-header">
-
     <h1><%= guru.name %></h1>
-
-    <a href="/guru-logout" class="btn btn-default btn-sm">Logout</a>
-
+    <a href="/guru-edit" class="btn btn-default btn-sm">Edit Profile</a>
 </div>
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
         <div class="well">
-
-            <h3>Locally Stored Guru</h3>
-
             <p>
                 <strong>Name</strong>: <%= guru.name %><br>
-                <strong>id</strong>: <%= guru._id %><br>
                 <strong>email</strong>: <%= guru.email %><br>
-                <strong>password</strong>: <%= guru.password %>
-            </p>
-                
+                <strong>activities</strong>: <% guru.activities.forEach(function(a) { %>
+                    <li><%= a.type %></li>
+                    <% }) %><br>
+                <strong>studios</strong>: <% guru.studios.forEach(function(s) { %>
+                    <li><%= s %></li>
+                    <% }) %><br>
+                <strong>reviews</strong>: <%= guru.reviews %><br>
+                <strong>Image</strong>: <%= guru.picture %><br>    
+            </p>     
         </div>
     </div>
 </div>
+
+<script src="/js/app.js"></script>
