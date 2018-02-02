@@ -29,8 +29,9 @@ gurusAllRouter.post('/', (req,res) => {
 
 // Show a specific Guru:
 gurusAllRouter.get('/:id', (req, res) => {
-  Guru.findById(req.params.id, (err, thatGuru) => {
-    res.json(thatGuru)
+  Guru.findById(req.params.id).populate('activities').exec((err, thatGuru) => {
+    if(err) return console.log(err)
+    res.render('guru-profile', {guru: thatGuru})
   })
 })
 
@@ -42,6 +43,17 @@ gurusAllRouter.post('/:id/activities', (req, res) => {
       res.redirect(`/gurus/${req.params.id}`)
     })
   })
-
 })
+
+// Add studio to a specific guru:
+gurusAllRouter.post('/:id/studios', (req, res) => {
+  Guru.findById(req.params.id, (err, thatGuru) => {
+    thatGuru.studios.push(req.body.studio)
+    thatGuru.save((err, savedGuru) => {
+      res.redirect(`/gurus/${req.params.id}`)
+    })
+  })
+})
+
+
 module.exports = gurusAllRouter

@@ -7,16 +7,16 @@
         <div class="well">
             <p>
                 <strong>Name</strong>: <%= guru.name %><br>
-                <strong>id</strong>: <%= guru._id %><br>
                 <strong>email</strong>: <%= guru.email %><br>
-                <strong>password</strong>: <%= guru.password %><br>
-                <strong>activities</strong>: <%= guru.activities %><br>
-                <strong>studio</strong>: <%= guru.studio %><br>
+                <strong>activities</strong>: <% guru.activities.forEach(function(a) { %>
+                    <li><%= a.type %></li>
+                    <% }) %><br>
+                <strong>studios</strong>: <% guru.studios.forEach(function(s) { %>
+                    <li><%= s %></li>
+                    <% }) %><br>
                 <strong>reviews</strong>: <%= guru.reviews %><br>
-                <strong>Image</strong>: <%= guru.picture %><br>
-                
-            </p>
-                
+                <strong>Image</strong>: <%= guru.picture %><br>    
+            </p>     
         </div>
     </div>
 </div>
