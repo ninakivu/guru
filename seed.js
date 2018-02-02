@@ -149,9 +149,6 @@ mongoose.connect(mongoConnectionString, (err) => {
       type: "Fencing"
     },
     {
-      type: "Martial Arts"
-    },
-    {
       type: "Self Defense"
     }
   ]
