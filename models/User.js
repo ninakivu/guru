@@ -26,6 +26,16 @@ const
         return bcrypt.compareSync(password, this.password)  //compares password provided with password in database
     }
 
+
+    // MONGOOSE MIDDLEWARE: before updating a user, check to see if password was modified.
+    // if so, rehash it into sdlkfsdlkfnsldfnsldkfnsdlfknsdf before saving.
+    userSchema.pre('save', function(next) {
+        if(this.isModified('password')) {
+            this.password = this.generateHash(this.password)
+        }
+        next()
+    })
+
     const User = mongoose.model('User', userSchema)
 
     module.exports = User

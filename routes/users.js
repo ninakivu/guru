@@ -66,22 +66,30 @@ userRouter.get('/user-edit', isLoggedIn, (req, res) => {
 // PROFILE - EDIT/PATCH --------------
 userRouter.patch('/user-edit', isLoggedIn, (req, res) => {
     console.log('PATCH TRIGGERED')
-    console.log(req.body)
+    //console.log(req.body)
     console.log(req.user)
     console.log('user id  ', req.user.id)
-    User.findByIdAndUpdate(req.user.id, req.body, {new: true}, (err, myUser) => {
-        if(err) return console.log(err)  
-        console.log('inside user id  ', myUser.id)
-        console.log('inside body sex   ' , req.body.sex)
+    User.findById(req.user.id, (err, myUser) => {
+        if(err) return console.log(err)
+        
+        // filter out empty fields:: empty fields may overwrite current fields if not removed
+        const userUpdateData = {}    //make a new object
+        for(field in req.body) {        //for each field in req.body
+            if(req.body[field] != "") userUpdateData[field] = req.body[field]  //if req.body field is NOT empty, then save filled field into NEW field AND OBJECT (userUpdateData)
+        }
 
-        myUser.name = req.body.name
-        myUser.password = req.body.name
-        myUser.zip = req.body.zip
-        myUser.gender = req.body.sex
-        myUser.picture_url = req.body.picture_url
-        myUser.background_url = req.body.background_url
-      })
-    res.redirect('/user-profile')
+        // merge what's left into the user
+         Object.assign(myUser, userUpdateData)  //push userUpdateData INTO myUser; myUser is updated 
+        //const user = {...myUser, ...userUpdateData}
+
+        myUser.save((err, savedUser) => {    //save myUser, return new savedUser
+            if(err) return console.log(err)
+            console.log(savedUser)
+            res.redirect('/user-profile')
+        }) //end save
+
+    }) //END FindBy
+    
 })// END EDIT/PATCH --------------
 
 // PROFILE - DELETE --------------

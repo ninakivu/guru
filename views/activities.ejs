@@ -1,7 +1,7 @@
 
 <style>
     
-    #activity-card{
+    .activity-card{
         float: left;
         
     }
@@ -12,7 +12,7 @@
 
     <h1>Activities</h1>
 
-    <h3> Hello , what should we do today?</h3>
+    <h3> Hello <%= user.name %>, what should we do today?</h3>
    
    
         <div class="form-group">
@@ -21,18 +21,20 @@
           <small id="searchHelp" class="form-text text-muted">Search for your Activity</small>
         </div>
         <button type="search"  id="searchBtn" class="btn btn-primary">Search</button>
+        <button type="search"  id="allActivitiesBtn" class="btn btn-info">All Activities</button>
         <span id="errorSpan"></span>
 
       <br>
       <div id='results'>
-    <% activities.forEach((activity) => { %>
-        <div id="activity-card" class="card" style="width: 18rem; " >
+    <% activities.forEach((activity) => { %>  <!-- new METHOD to go through object -->
+        <div id="<%= activity.id %>"  class="card activity-card" style="width: 18rem; " >
             <div class="card-body">
               <h5 class="card-title"><%= activity.type %></h5>
               
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
           </div> <!-- end activities -->
+         
     <% }) %>
     </div> <!-- end results -->
    

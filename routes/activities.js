@@ -11,11 +11,11 @@ const
 
 // SHOW all activities:
 activityRouter.get('/', (req, res) => {
-console.log('my user :  ', req.user)
+
   Activity.find({}, (err, allDemActivities) => {
     if(err) return console.log(err)   
     // console.log('PRINT   :', allDemActivities)
-    console.log('User:  ', req.user)
+    console.log('Current User:  ', req.user)
     res.render('activities', {user: req.user, activities: allDemActivities})
   })
 })// END SHOW Activities
