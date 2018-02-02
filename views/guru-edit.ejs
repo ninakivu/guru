@@ -1,6 +1,6 @@
 <div class="page-header">
   <h1><%= guru.name %></h1>
-  <a href="/guru-logout" class="btn btn-default btn-sm">Logout</a>
+  <a href="/logout" class="btn btn-default btn-sm">Logout</a>
 </div>
   
 <form method="POST" action="/guru-edit?_method=PATCH">
@@ -43,7 +43,7 @@
 <form method="POST" action="/gurus/<%=currentUser._id%>/activities">
  <label class="mr-sm-2" for="inlineFormCustomSelect activity-input">My Activity</label>
   <div class="col-6">
-    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect " name="activity">
+    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect activity" name="activity">
       <option selected>Choose...</option>
         <% activities.forEach((activity) => { %>
           <option value="<%= activity._id %>"><%= activity.type %></option>
@@ -56,13 +56,17 @@
 </form>
 
 <form method="POST" action="/gurus/<%=currentUser._id%>/studios">
-  <label class="mr-sm-2" for="studio-input">My Studio:</label>
-   <div class="col-6">
-    <label for="exampleInputPassword1">Studio</label>
-    <input type="text" class="form-control" id="guru-studio" name="studio" placeholder="Studio" value="">
-   </div>
+  <label class="mr-sm-2" for="inlineFormCustomSelect studio-input">My Studio:</label>
+    <div class="col-6">
+      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect studio" name="studio">
+        <option selected>Choose...</option>
+          <% studios.forEach((studio) => { %>
+            <option value="<%= studio._id %>"><%= studio.name %>, <%= studio.location %></option>
+          <% }) %>  
+      </select>
+    </div>
    <div class="col-auto my-1">
-     <button type="submit" class="btn btn-primary" id="add-studio">Add</button> 
+     <button class="btn btn-primary" id="add-studio">Add</button> 
    </div>
  </form>
 

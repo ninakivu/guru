@@ -1,3 +1,7 @@
+<% if (message.length > 0) { %>
+    <div class="alert alert-danger"><%= message %></div>
+<% } %>
+
 <div class="page-header">
     <h1><%= guru.name %></h1>
     <a href="/guru-edit" class="btn btn-default btn-sm">Edit Profile</a>
@@ -8,14 +12,16 @@
             <p>
                 <strong>Name</strong>: <%= guru.name %><br>
                 <strong>email</strong>: <%= guru.email %><br>
+                <strong>ZIP</strong>: <%= guru.zip %><br>
+                
                 <strong>activities</strong>: <% guru.activities.forEach(function(a) { %>
                     <li><%= a.type %></li>
                     <% }) %><br>
                 <strong>studios</strong>: <% guru.studios.forEach(function(s) { %>
-                    <li><%= s %></li>
+                    <li><%= s.name %>, <%= s.location %></li>
                     <% }) %><br>
                 <strong>reviews</strong>: <%= guru.reviews %><br>
-                <strong>Image</strong>: <%= guru.picture %><br>    
+                <strong>Image</strong>: <%= guru.picture_url %><br>    
             </p>     
         </div>
     </div>

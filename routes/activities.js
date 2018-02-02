@@ -1,15 +1,14 @@
 // activities routes:
-
 const
   express = require('express'),
   app = express(),
   activityRouter = new express.Router(),
   Guru = require('../models/Guru.js'),
-  Activity = require('../models/Activity.js')
+  Activity = require('../models/Activity.js'), 
+  Studio = require('../models/Studio.js')
 
 // SHOW all activities:
 activityRouter.get('/', (req, res) => {
-
   Activity.find({}, (err, allDemActivities) => {
     if(err) return console.log(err)   
     // console.log('PRINT   :', allDemActivities)
@@ -29,7 +28,6 @@ activityRouter.get('/search/:term', (req, res) => {
     })
 
 })// END POST/SEARCH all activities:
-
 
 
 // Show a specific activity:

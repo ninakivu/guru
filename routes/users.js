@@ -3,6 +3,7 @@
 const 
     express = require('express'),
     passport = require('passport'),
+    flash = require('connect-flash'),
     userRouter = new express.Router(),
     methodOverride = require('method-override'), //Method Override
     bodyParser = require('body-parser'),
@@ -69,20 +70,29 @@ userRouter.patch('/user-edit', isLoggedIn, (req, res) => {
     console.log(req.body)
     console.log(req.user)
     console.log('user id  ', req.user.id)
-    User.findByIdAndUpdate(req.user.id, req.body, {new: true}, (err, myUser) => {
+    User.findById(req.user.id, req.body, (err, myUser) => {
         if(err) return console.log(err)  
-        console.log('inside user id  ', myUser.id)
-        console.log('inside body sex   ' , req.body.sex)
+        
+        // to filter out all the empty fields (that were not changed)
+        const userUpdateData = {}
+        
+        //  You loop through an object to merge what is left into the user
+        for(field in req.body) {
+            if(req.body[field] != "") userUpdateData[field] = req.body[field]
+        }
 
-        myUser.name = req.body.name
-        myUser.password = req.body.name
-        myUser.zip = req.body.zip
-        myUser.gender = req.body.sex
-        myUser.picture_url = req.body.picture_url
-        myUser.background_url = req.body.background_url
+
+        // Object constructor: usually creates a new object 
+        // assign = object constructor method
+        Object.assign(myUser, userUpdateData)
+        myUser.save((err, savedUser) => {
+            if(err) return console.log(err)
+            res.redirect('/user-profile')
+        })
       })
-    res.redirect('/user-profile')
+    
 })// END EDIT/PATCH --------------
+
 
 // PROFILE - DELETE --------------
 userRouter.delete('/user-delete', isLoggedIn, (req, res) => {
@@ -98,7 +108,7 @@ userRouter.delete('/user-delete', isLoggedIn, (req, res) => {
 
 
 // LOGOUT ------- 
-userRouter.get('/user-logout', (req, res) => {
+userRouter.get('/logout', (req, res) => {
     req.logout()
     res.redirect('/')
 })

@@ -97,9 +97,18 @@ app.use('/gurus', gurusAllRoutes)
 app.use('/activities', activityRoutes)
 
 // Studios:
-app.use('/studios', (req, res) => {
-  Guru.find({studios: req.body.studios})
-  res.redirect('studios', {studios: studios})
+app.get('/studios', (req, res) => {
+  Studio.find({}, (err, allDemStudios) => {
+    if(err) return console.log(err)
+    res.render('studios-index', {studios: allDemStudios})
+  })
+})
+
+// Create Studio:
+app.post('/studios', (req, res) => {
+  Studio.create(req.body, (err, brandNewStudio) => {
+    res.json({message: "Studio created", Studio: brandNewStudio})
+  })
 })
 
 
