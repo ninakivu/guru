@@ -12,7 +12,7 @@ activityRouter.get('/', (req, res) => {
 
   Activity.find({}, (err, allDemActivities) => {
     if(err) return console.log(err)   
-    //console.log('PRINT   :', allDemActivities)
+    // console.log('PRINT   :', allDemActivities)
     res.render('activities', {user: req.user, activities: allDemActivities})
   })
 })// END SHOW Activities
@@ -23,9 +23,9 @@ activityRouter.get('/search/:term', (req, res) => {
     const regex = new RegExp(req.params.term,'i');
     console.log('Search Term (server side)  :' , req.params.term)
     Activity.find({$or: [{type: regex}]}, (err, results) => {
-      console.log('RESULTS   :', results)
-      //console.log('FIND results (server side)  :' , req.params.term)
-      //res.json(results)
+      console.log('RESULTS   :', results  )
+      
+      res.json(results)
     })
 
 })// END POST/SEARCH all activities:

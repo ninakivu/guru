@@ -53,6 +53,12 @@ mongoose.connect(mongoConnectionString, (err) => {
       type: "Boxing"
     },
     {
+      type: "Running"
+    },
+    {
+      type: "Long Distance Running"
+    },
+    {
       type: "Barre"
     },
     {
@@ -135,6 +141,18 @@ mongoose.connect(mongoConnectionString, (err) => {
     },
     {
       type: "Spinning"
+    },
+    {
+      type: "Marathon Training"
+    },
+    {
+      type: "Fencing"
+    },
+    {
+      type: "Martial Arts"
+    },
+    {
+      type: "Self Defense"
     }
   ]
 
