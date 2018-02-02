@@ -43,13 +43,20 @@ mongoose.connect(mongoConnectionString, (err) => {
 
   var activities = [
     {
-      type: "Yoga"
+      type: "Yoga",
+      picture_URL:"https://pbs.twimg.com/media/DTwuu2iVAAAWTRH.jpg"
     },
     {
       type: "Pilates"
     },
     {
       type: "Boxing"
+    },
+    {
+      type: "Running"
+    },
+    {
+      type: "Long Distance Running"
     },
     {
       type: "Barre"
@@ -134,6 +141,15 @@ mongoose.connect(mongoConnectionString, (err) => {
     },
     {
       type: "Spinning"
+    },
+    {
+      type: "Marathon Training"
+    },
+    {
+      type: "Fencing"
+    },
+    {
+      type: "Self Defense"
     }
   ]
 
