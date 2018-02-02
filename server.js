@@ -46,6 +46,8 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(flash())
 app.use(methodOverride('_method'))  //Method Override
+app.use(express.static(`${__dirname}/views`))
+
 
 // ejs configuration
 app.set('view engine', 'ejs')

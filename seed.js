@@ -43,7 +43,8 @@ mongoose.connect(mongoConnectionString, (err) => {
 
   var activities = [
     {
-      type: "Yoga"
+      type: "Yoga",
+      picture_URL:"https://pbs.twimg.com/media/DTwuu2iVAAAWTRH.jpg"
     },
     {
       type: "Pilates"

@@ -1,0 +1,51 @@
+
+<style>
+    
+    #activity-card{
+        float: left;
+        
+    }
+
+</style>
+
+<div id="activities-main">
+
+    <h1>Activities</h1>
+
+    <h3> Hello <%= user.name %>, what should we do today?</h3>
+   
+    <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1"></label>
+          <input type="search" class="form-control" id="searchField" aria-describedby="searchHelp" placeholder="Search...">
+          <small id="searchHelp" class="form-text text-muted">Search for your Activity</small>
+        </div>
+        <button type="search"  id="searchBtn" class="btn btn-primary">Search</button>
+      </form>
+
+      <br>
+      
+
+    <% activities.forEach((activity) => { %>
+        <div id="activity-card" class="card" style="width: 18rem; " >
+            <div class="card-body">
+              <h5 class="card-title"><%= activity.type %></h5>
+              
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+
+      
+    <% }) %>
+    
+   
+
+
+</div>
+<script src="/js/app.js">
+
+
+
+
+
+</script>
