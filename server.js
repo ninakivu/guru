@@ -11,22 +11,25 @@ const
   MongoDBStore = require('connect-mongodb-session')(session),
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
+  methodOverride = require('method-override'),
+
+// Routes:
   userRoutes = require('./routes/users.js'),
   guruRoutes = require('./routes/gurus.js'),
   activityRoutes = require('./routes/activities.js'),
-  methodOverride = require('method-override'),
   gurusAllRoutes = require('./routes/gurusAll.js'),
 
-
+// Models:
   Guru = require('./models/Guru.js'),
-  Activity = require('./models/Activity.js')
+  Activity = require('./models/Activity.js'),
+  Studio = require('./models/Studio.js')
   
 
 
 // environment port
 const
   port = process.env.PORT || 3000,
-  mongoConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/guru'
+  mongoConnectionString = process.env.MONGODB_URI || 'mongodb://localhost/guru'
 
 // mongoose connection:
 mongoose.connect(mongoConnectionString, (err) => {
@@ -92,6 +95,12 @@ app.use('/gurus', gurusAllRoutes)
 
 // Activity Routes:
 app.use('/activities', activityRoutes)
+
+// Studios:
+app.use('/studios', (req, res) => {
+  Guru.find({studios: req.body.studios})
+  res.redirect('studios', {studios: studios})
+})
 
 
 app.listen(port, (err) => {

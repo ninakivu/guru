@@ -9,7 +9,7 @@ const
 gurusAllRouter.get('/', (req, res) => {
   Guru.find({}, (err, allDemGurus) => {
     if(err) return console.log(err)
-    res.json(allDemGurus)
+    res.render('guru-index', {gurus: allDemGurus})
   })
 })
 
