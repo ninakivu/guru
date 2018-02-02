@@ -70,6 +70,12 @@ function isLoggedIn( req, res, next){
   res.redirect('/user-login')
 }
 
+app.use(function(req, res, next) {
+  app.locals.currentUser = req.user
+  app.locals.loggedIn = !!req.user
+  next()
+})
+
 // root route
 app.get('/', (req, res) => {
   res.render('splash')

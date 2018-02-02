@@ -6,13 +6,12 @@ const
     email: {type: String},
     password: {type: String},
     activities: [{type: mongoose.Schema.Types.ObjectId, ref: 'Activity'}], 
-    studio: [String],
+    studios: [String],
     reviews: [String],
     picture: {type: 'string'}
   })
 
-guruSchema.methods.generateHash = function(password){   //takes password and encodes it. Make HAsh of the user
-
+guruSchema.methods.generateHash = function(password){   //takes password and encodes it. Make Hash of the user
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
 }
 

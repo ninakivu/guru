@@ -46,10 +46,11 @@ activityRouter.post('/', (req, res) => {
   })
 })
 
-// Index of al GURUs for certain activity:
+// Index of all GURUs for certain activity:
 activityRouter.get('/:id/gurus', (req, res) => {
-  Guru.find({activities: req.params.id}, (err, allGuruForThis) => {
-    res.json(allGuruForThis)
+  Guru.find({activities: req.params.id}, (err, allActiveGuru) => {
+    console.log(allActiveGuru)
+    res.render('activity-gurus', {guru: allActiveGuru})
   })
 })
 

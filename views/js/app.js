@@ -1,5 +1,4 @@
-console.log('JavaScript app-user.js is working')
-
+console.log('JavaScript app.js is working')
 
 
 var $searchBtn = $('#searchBtn')
@@ -60,10 +59,6 @@ function makeDIV(myDataObj){
         }//end else
 }  //END build results
 //---===== END BUILD RESULTS ======------
-
-
-
-
 
 
 
