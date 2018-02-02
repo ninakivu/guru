@@ -22,15 +22,15 @@
 
       <% if(loggedIn) { %>
         <li class="nav-item">
-          <a class="nav-link" href="/users/<%=currentUser._id%>"><%= currentUser.name %></a>
+          <a class="nav-link" href="/guru-profile"><%= currentUser.name %></a>
         </li>
       <% } else { %>
         <li class="nav-item">
-          <a class="nav-link" href="/login">Log In</a>
+          <a class="nav-link" href="/">Log In</a>
           
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/signup">Sign Up</a>
+          <a class="nav-link" href="/">Sign Up</a>
           
         </li>
  
