@@ -5,14 +5,17 @@ const
   app = express(),
   activityRouter = new express.Router(),
   Guru = require('../models/Guru.js'),
-  Activity = require('../models/Activity.js')
+  Activity = require('../models/Activity.js'),
+  User = require('../models/User.js')
+  
 
 // SHOW all activities:
 activityRouter.get('/', (req, res) => {
-
+console.log('my user :  ', req.user)
   Activity.find({}, (err, allDemActivities) => {
     if(err) return console.log(err)   
     // console.log('PRINT   :', allDemActivities)
+    console.log('User:  ', req.user)
     res.render('activities', {user: req.user, activities: allDemActivities})
   })
 })// END SHOW Activities
