@@ -34,5 +34,14 @@ gurusAllRouter.get('/:id', (req, res) => {
   })
 })
 
+// Add activity to a specific guru:
+gurusAllRouter.post('/:id/activities', (req, res) => {
+  Guru.findById(req.params.id, (err, thatGuru) => {
+    thatGuru.activities.push(req.body.activity)
+    thatGuru.save((err, savedGuru) => {
+      res.redirect(`/gurus/${req.params.id}`)
+    })
+  })
 
+})
 module.exports = gurusAllRouter

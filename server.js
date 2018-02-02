@@ -46,6 +46,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(flash())
 app.use(methodOverride('_method'))  //Method Override
+app.use(express.static(`${__dirname}/views`))
 
 // ejs configuration
 app.set('view engine', 'ejs')
@@ -67,6 +68,12 @@ function isLoggedIn( req, res, next){
   if(req.isAuthenticated()) return next()
   res.redirect('/user-login')
 }
+
+app.use(function(req, res, next) {
+  app.locals.currentUser = req.user
+  app.locals.loggedIn = !!req.user
+  next()
+})
 
 // root route
 app.get('/', (req, res) => {
