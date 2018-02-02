@@ -67,29 +67,30 @@ userRouter.get('/user-edit', isLoggedIn, (req, res) => {
 // PROFILE - EDIT/PATCH --------------
 userRouter.patch('/user-edit', isLoggedIn, (req, res) => {
     console.log('PATCH TRIGGERED')
-    console.log(req.body)
+    //console.log(req.body)
     console.log(req.user)
     console.log('user id  ', req.user.id)
-    User.findById(req.user.id, req.body, (err, myUser) => {
-        if(err) return console.log(err)  
+
+    User.findById(req.user.id, (err, myUser) => {
+        if(err) return console.log(err)
         
-        // to filter out all the empty fields (that were not changed)
-        const userUpdateData = {}
-        
-        //  You loop through an object to merge what is left into the user
-        for(field in req.body) {
-            if(req.body[field] != "") userUpdateData[field] = req.body[field]
+        // filter out empty fields:: empty fields may overwrite current fields if not removed
+        const userUpdateData = {}    //make a new object
+        for(field in req.body) {        //for each field in req.body
+            if(req.body[field] != "") userUpdateData[field] = req.body[field]  //if req.body field is NOT empty, then save filled field into NEW field AND OBJECT (userUpdateData)
         }
 
+        // merge what's left into the user
+         Object.assign(myUser, userUpdateData)  //push userUpdateData INTO myUser; myUser is updated 
+        //const user = {...myUser, ...userUpdateData}
 
-        // Object constructor: usually creates a new object 
-        // assign = object constructor method
-        Object.assign(myUser, userUpdateData)
-        myUser.save((err, savedUser) => {
+        myUser.save((err, savedUser) => {    //save myUser, return new savedUser
             if(err) return console.log(err)
+            console.log(savedUser)
             res.redirect('/user-profile')
-        })
-      })
+        }) //end save
+
+    }) //END FindBy
     
 })// END EDIT/PATCH --------------
 

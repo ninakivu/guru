@@ -24,7 +24,12 @@ const
         return bcrypt.compareSync(password, this.password)  //compares password provided with password in database
     }
 
+
+    // MONGOOSE MIDDLEWARE: before updating a user, check to see if password was modified.
+    // if so, rehash it into sdlkfsdlkfnsldfnsldkfnsdlfknsdf before saving.
+
 // To rehash the password (if you want to change the password):
+
     userSchema.pre('save', function(next) {
         if(this.isModified('password')) {
             this.password = this.generateHash(this.password)
