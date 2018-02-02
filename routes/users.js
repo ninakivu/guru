@@ -3,6 +3,7 @@
 const 
     express = require('express'),
     passport = require('passport'),
+    flash = require('connect-flash'),
     userRouter = new express.Router(),
     methodOverride = require('method-override'), //Method Override
     bodyParser = require('body-parser'),
@@ -69,6 +70,7 @@ userRouter.patch('/user-edit', isLoggedIn, (req, res) => {
     //console.log(req.body)
     console.log(req.user)
     console.log('user id  ', req.user.id)
+
     User.findById(req.user.id, (err, myUser) => {
         if(err) return console.log(err)
         
@@ -92,6 +94,7 @@ userRouter.patch('/user-edit', isLoggedIn, (req, res) => {
     
 })// END EDIT/PATCH --------------
 
+
 // PROFILE - DELETE --------------
 userRouter.delete('/user-delete', isLoggedIn, (req, res) => {
     
@@ -106,7 +109,7 @@ userRouter.delete('/user-delete', isLoggedIn, (req, res) => {
 
 
 // LOGOUT ------- 
-userRouter.get('/user-logout', (req, res) => {
+userRouter.get('/logout', (req, res) => {
     req.logout()
     res.redirect('/')
 })

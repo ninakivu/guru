@@ -1,14 +1,15 @@
 //guru routes
 const
   express = require('express'),
-  app = express(),
   guruRouter = new express.Router(),
   passport = require('passport'),
+  flash = require('connect-flash'),
   methodOverride = require('method-override'),
   bodyParser = require('body-parser'),
   
   Guru = require('../models/Guru.js'),
-  Activity = require('../models/Activity.js')
+  Activity = require('../models/Activity.js'), 
+  Studio = require('../models/Studio.js')
 
 // middleware
 guruRouter.use(methodOverride('_method')), 
@@ -31,7 +32,7 @@ function isLoggedIn(req, res, next) {
 }
 
 guruRouter.get('/guru-login', (req, res) => {
-  res.render('guru-login')
+  res.render('guru-login', {message: req.flash('loginMessage')})
 })
 
 guruRouter.post('/guru-login', passport.authenticate('guru-local-login', {
@@ -41,7 +42,7 @@ guruRouter.post('/guru-login', passport.authenticate('guru-local-login', {
 
 // Sign up:
 guruRouter.get('/guru-signup', (req, res) => {
-  res.render('guru-signup')
+  res.render('guru-signup', {message: req.flash('signupMessage')})
 })
 
 guruRouter.post('/guru-signup', passport.authenticate('guru-local-signup', {
@@ -51,43 +52,50 @@ guruRouter.post('/guru-signup', passport.authenticate('guru-local-signup', {
 
 // Profile:
 guruRouter.get('/guru-profile', isLoggedIn, (req, res) => {
-  res.render('guru-profile', {guru: req.user})
+  res.render('guru-profile', {guru: req.user, message: req.flash('signupMessage')})
 })
 
 // Edit profile:
 guruRouter.get('/guru-edit', isLoggedIn, (req, res) => {
   Activity.find({}, (err, activities) => {
-    res.render('guru-edit', {guru: req.user, activities})
+    Studio.find({}, (err, studios) => {
+      res.render('guru-edit', {guru: req.user, studios, activities})
+      console.log(studios)
+    })
   })
 })
 
-// Update guru:
+// Edit guru:
 guruRouter.patch('/guru-edit', isLoggedIn, (req, res) => {
   console.log('PATCH TRIGGERED')
   console.log(req.body)
   console.log(req.user)
   console.log('user id  ', req.user.id)
-  Guru.findByIdAndUpdate(req.user.id, req.body, {new: true}, (err, myUser) => {
+  Guru.findById(req.user.id, req.body, (err, myGuru) => {
     if(err) return console.log(err)  
-    console.log('inside user id  ', myUser.id)
-    console.log('inside body sex   ' , req.body.sex)
+    
+    // to filter out all the empty fields (that were not changed)
+    const guruUpdateData = {}
+    
+    //  You loop through an object to merge what is left into the user
+    for(field in req.body) {
+        if(req.body[field] != "") guruUpdateData[field] = req.body[field]
+    }
 
-    myUser.name = req.body.name
-    myUser.email = req.body.email
-    myUser.password = req.body.password
-    myUser.activities = req.body.activities
-    myUser.studio = req.body.studio
-    myUser.reviews = req.body.reviews
-    myUser.picture = req.body.picture
+    // Object constructor: usually creates a new object 
+    // assign = object constructor method
+    Object.assign(myGuru, guruUpdateData)
+    myGuru.save((err, savedGuru) => {
+        if(err) return console.log(err)
+        res.redirect('/guru-profile')
+    })
   })
-  res.redirect('/guru-profile')
 })
 
 // Logout guru:
-guruRouter.get('/guru-logout', (req, res) => {
+guruRouter.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
 })
-
 
 module.exports = guruRouter

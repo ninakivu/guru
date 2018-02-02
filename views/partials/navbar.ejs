@@ -17,12 +17,26 @@
       <li class="nav-item">
         <a class="nav-link" href="/studios">Studios</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/user/:id">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Logout</a>
 
+
+
+      <% if(loggedIn) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/<%=currentUser._id%>"><%= currentUser.name %></a>
+        </li>
+      <% } else { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Log In</a>
+          
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">Sign Up</a>
+          
+        </li>
+ 
+      <% } %>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
       </li>
     </ul>
   </div>

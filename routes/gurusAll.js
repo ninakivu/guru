@@ -1,9 +1,10 @@
 const
   express = require('express'),
-  app = express(),
   gurusAllRouter = new express.Router(),
   Guru = require('../models/Guru.js'),
-  Activity = require('../models/Activity.js')
+  flash = require('connect-flash'),
+  Activity = require('../models/Activity.js'),
+  Studio = require('../models/Studio.js')
 
 // Get all gurus:
 gurusAllRouter.get('/', (req, res) => {
@@ -29,7 +30,7 @@ gurusAllRouter.post('/', (req,res) => {
 
 // Show a specific Guru:
 gurusAllRouter.get('/:id', (req, res) => {
-  Guru.findById(req.params.id).populate('activities').exec((err, thatGuru) => {
+  Guru.findById(req.params.id).populate('activities').populate('studios').exec((err, thatGuru) => {
     if(err) return console.log(err)
     res.render('guru-profile', {guru: thatGuru})
   })
