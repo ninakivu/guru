@@ -7,7 +7,10 @@ const
     userRouter = new express.Router(),
     methodOverride = require('method-override'), //Method Override
     bodyParser = require('body-parser'),
-    User = require('../models/User.js')
+    
+    User = require('../models/User.js'),
+    Studio = require('../models/Studio.js'),
+    Activity = require('../models/Activity.js')
 
 
     // middleware
