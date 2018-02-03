@@ -3,9 +3,8 @@ const
   express = require('express'),
   app = express(),
   activityRouter = new express.Router(),
-  Guru = require('../models/Guru.js'),
-
   
+  Guru = require('../models/Guru.js'),
   User = require('../models/User.js'),
   Activity = require('../models/Activity.js'), 
   Studio = require('../models/Studio.js')
@@ -24,15 +23,15 @@ activityRouter.get('/', (req, res) => {
 
 // POST/SEARCH all activities:
 activityRouter.get('/search/:term', (req, res) => {
-    const regex = new RegExp(req.params.term,'i');
-    console.log('Search Term (server side)  :' , req.params.term)
-    Activity.find({$or: [{type: regex}]}, (err, results) => {
-      console.log('RESULTS   :', results  )
-      
-      res.json(results)
-    })
-
-})// END POST/SEARCH all activities:
+  const regex = new RegExp(req.params.term,'i');
+  console.log('Search Term (server side)  :' , req.params.term)
+  Activity.find({$or: [{type: regex}]}, (err, results) => {
+    console.log('RESULTS   :', results  )
+    
+    res.json(results)
+  })
+})
+// END POST/SEARCH all activities:
 
 
 // SHOW a specific activity:

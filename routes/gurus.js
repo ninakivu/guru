@@ -8,6 +8,7 @@ const
   bodyParser = require('body-parser'),
   
   Guru = require('../models/Guru.js'),
+  User = require('../models/User.js'),
   Activity = require('../models/Activity.js'), 
   Studio = require('../models/Studio.js')
 

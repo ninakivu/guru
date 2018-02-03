@@ -1,3 +1,30 @@
-<% gurus.forEach(function(g) { %>
-  <li><%= g.name %></li>
+<style>
+  .guru-card{
+    float: left;   
+  }
+</style>
+
+<div id="gurus-main">
+  <h1>Gurus</h1>
+  <h3> Hello <%= user.name %>, who's gonna be your GURU today?</h3>
+  <div class="form-group">
+    <label for="exampleInputEmail1"></label>
+    <input type="search" class="form-control" id="searchGuruField" aria-describedby="searchHelp" placeholder="Search...">
+    <small id="searchHelp" class="form-text text-muted">Search for your Guru</small>
+  </div>
+  <button type="search"  id="searchGuruBtn" class="btn btn-primary">Search</button>
+  <button type="search"  id="allGurusBtn" class="btn btn-info">All Gurus</button>
+  <span id="errorSpan"></span>
+  <br>
+  <div id='results'>
+  <% gurus.forEach((guru) => { %>  <!-- new METHOD to go through object -->
+    <div id="<%= guru.id %>"  class="card guru-card" style="width: 18rem; " >
+      <div class="card-body">
+        <h5 class="card-title"><%= guru.name %></h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div> 
   <% }) %>
+</div>
+
+<script src="/js/app.js"></script>
