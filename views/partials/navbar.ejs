@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/activities">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/gurus">Gurus</a>
@@ -17,14 +17,11 @@
       <li class="nav-item">
         <a class="nav-link" href="/studios">Studios</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/profile">Profile</a>
-      </li>
      
 
       <% if(loggedIn) { %>
         <li class="nav-item">
-          <a class="nav-link" href="/guru-profile"><%= currentUser.name %></a>
+          <a class="nav-link" href="/gurus/<%=currentUser._id%>"><%= currentUser.name %></a>
         </li>
       <% } else { %>
         <li class="nav-item">
