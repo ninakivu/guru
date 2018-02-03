@@ -60,8 +60,8 @@ guruRouter.get('/guru-profile', isLoggedIn, (req, res) => {
 guruRouter.get('/guru-edit', isLoggedIn, (req, res) => {
   Activity.find({}, (err, activities) => {
     Studio.find({}, (err, studios) => {
-      res.render('guru-edit', {guru: req.user, studios, activities})
-      console.log(studios)
+      res.render('guru-edit', {guru: req.user, studios, activities: activities})
+      console.log(activities)
     })
   })
 })

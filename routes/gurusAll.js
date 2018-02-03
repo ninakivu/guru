@@ -39,7 +39,6 @@ gurusAllRouter.post('/', (req,res) => {
     if(err) return console.log(err)
     res.json({message: "Guru born! ", guru: brandNewGuru})
   })
-  
 })
 
 // Show a specific Guru:
