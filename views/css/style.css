@@ -1,0 +1,38 @@
+
+
+
+.row {
+    border: red 0px solid;
+           
+}
+
+#guru_show_namecard{
+    border: red 0px solid;
+}
+
+.guru-col-left{
+    border: blue 0px solid;
+    height:600px;
+    float: left;
+    display: inline-block;
+    text-align:center;
+}
+.guru-col-left img{
+   
+    width:150px;
+    margin: 100px 0px auto 0px;
+}
+
+.guru-col-right{
+    display: inline-block;
+    
+}
+
+#my_guru_card {
+    border: green 0px solid;
+    padding: 0px 100px 0px 75px;
+  
+}
+#my_guru_card h2, h5{
+    text-align: center;
+}

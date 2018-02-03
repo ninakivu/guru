@@ -166,18 +166,18 @@ function makeActivityDIV(myDataObj){
         $('#errorSpan').text("")
             for (x = 0; x < myDataObj.length; x++){  
                    
-                $('#results').append(`<div id="${myDataObj[x]._id}" class="card act-guru-card newCard" style="width: 30rem; " >` +
+                $('#results').append(`<div id="${myDataObj[x]._id}" class="card activities-guru-card act-guru-card newCard" style="width: 30rem; " >` +
                 `<h5 class="card-title">${myDataObj[x].name}</h5>`+   //TICK Marks !
                 '</div>')
                 //$activitycardDIV.attr('id', myDataObj[x]._id)
                 console.log('building div  :' , myDataObj[x]._id , '  ', myDataObj[x].name)
 
-                $('.guru-card').on('click', function(){
+                $('.activities-guru-card').on('click', function(){
 
                     var id = $(this).attr("id")
                     console.log('selecting: '+ id)
             
-                    window.location.href = `/guru/` + id
+                    window.location.href = `/gurus/` + id
                 }) //end CLICK
                 
             }  //end FOR LOOP
@@ -188,47 +188,7 @@ function makeActivityDIV(myDataObj){
 
 //=========-------BUILD GENERAL GURU LIST   -------===========
 
-function runActivityAllGurus(incomingData){
 
-    var searchText = incomingData
-    $searchActivityField.val('')
-    var options = {
-        url:'/activities/search/guru/'+ searchText,
-        method: 'get',
-        contentType:'application/json',  //tells server whats coming
-        data: JSON.stringify({body: searchText})   //converts data to JSON:: must be formated as JSON to submit :: "data" is the whole record
-        }
-
- $.ajax(options).done(function(dataThatCameBack){  //data that came back
-    
-    
-    console.log('my data:  ', dataThatCameBack)   //comes back as a JavaScript Array
-    
-    makeAllGuruList(dataThatCameBack)  //send to function
-
- }) //end ajax
-} //END SUBMIT 
-
-function makeAllGuruList(myData){
-
-
-    for (i = 0; i < myData.length; i++ ){
-        $('#results').append(`<div id="${myData[i]._id}" class="guru-card newCard" style="width: 30rem; " >` +
-        `<h5 class="card-title">${myData[x].name}</h5>`+   //TICK Marks !
-        `<h5 class="card-title">${myData[x].zip}</h5>`+
-        '</div>')
-        //$activitycardDIV.attr('id', myDataObj[x]._id)
-        console.log('building div  :' , myDataObj[x]._id , '  ', myDataObj[x].name)
-
-        $('.guru-card').on('click', function(){
-
-            var id = $(this).attr("id")
-            console.log('selecting: '+ id)
-    
-            window.location.href = `/guru/` + id
-        }) //end CLICK
-    }
-} //end function
 
 
 //=========-------END BUILD GENERAL GURU LIST   -------===========
