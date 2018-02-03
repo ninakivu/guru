@@ -27,11 +27,9 @@
       <br>
       <div id='results'>
     <% activities.forEach((activity) => { %>  <!-- new METHOD to go through object -->
-        <div id="<%= activity.id %>"  class="card activity-card" style="width: 18rem; " >
+        <div id="<%= activity.id %>"  class="activity-card <%= activity.css %>" style="width: 18rem; " >
             <div class="card-body">
-              <h5 class="card-title"><%= activity.type %></h5>
-              
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <p class="card-title"><%= activity.type %></p>
             </div>
           </div> <!-- end activities -->
          

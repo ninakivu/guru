@@ -39,7 +39,7 @@ function runSearch(){
 function makeDIV(myDataObj){
     console.log('TRIGGERED FUNCTION   :', myDataObj)
     //alert(myDataObj)
-    $('.card').hide()
+    $('.activity-card').hide()
 
     if ( myDataObj.length === 0 ){
         $('#errorSpan').text("Sorry that Activity is not avaiable at this time.")
@@ -48,9 +48,9 @@ function makeDIV(myDataObj){
         $('#errorSpan').text("")
             for (x = 0; x < myDataObj.length; x++){  
                    
-                $('#results').append(`<div id="${myDataObj[x]._id}" class="card activity-card newCard" style="width: 18rem; " >` +
+                $('#results').append(`<div id="${myDataObj[x]._id}" class="card activity-card newCard ${myDataObj[x].css}" style="width: 18rem; " >` +
                 '<div class="card-body">'+
-                `<h5 class="card-title">${myDataObj[x].type}</h5>`+   //TICK Marks !
+                `<p class="card-title">${myDataObj[x].type}</p>`+   //TICK Marks !
                 '</div></div>')
                 //$activitycardDIV.attr('id', myDataObj[x]._id)
                 console.log('building card  :' , myDataObj[x]._id)
@@ -87,7 +87,7 @@ function makeDIV(myDataObj){
 $allActivitiesBtn.on('click', function(){
     $('#errorSpan').text("")
     $('.newCard').remove()
-    $('.card').show()
+    $('.activity-card').show()
     
 
 }) //end CLICK
