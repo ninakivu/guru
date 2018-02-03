@@ -34,12 +34,34 @@ activityRouter.get('/search/:term', (req, res) => {
 // END POST/SEARCH all activities:
 
 
-// Show a specific activity:
+// SHOW a specific activity:
 activityRouter.get('/:id', (req, res) => {
   Activity.findById(req.params.id, (err, datActivity) => {
-    res.json(datActivity)
+      if(err) return console.log(err)   
+      Guru.find({activities: req.params.id}, (err, allGurusBy) =>{
+        if(err) return console.log(err)  
+        res.render('activity-gurus', {user: req.user, activity: datActivity, gurus: allGurusBy })
+      })
+      
+    })
+    //res.json(datActivity)
   })
-})
+
+// SHOW Activity and SEARCH for GURU:
+activityRouter.get('/search/guru/:id', (req, res) => {
+  const regex = new RegExp(req.params.id,'i');
+  console.log('Search Term (server side)  :' , req.params.id)
+  Guru.find({$or: [{type: regex}]}, (err, results) => {
+    console.log('RESULTS   :', results  )
+    
+    res.json(results)
+  })
+
+})// END Activity and SEARCH for GURU
+
+
+
+
 
 // Create activity:
 activityRouter.post('/', (req, res) => {
