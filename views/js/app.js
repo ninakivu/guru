@@ -94,32 +94,46 @@ $allActivitiesBtn.on('click', function(){
 // END SEE ALL ACTIVITY LINKS ----------- 
 
 
+//================================================================
+//================================================================
 //------------------ACTIVITY/GURU SHOW----------------------------
-var $searchActivityField = $('#searchActivityField')
+
+var $searchActivityGuruField = $('#searchActivityGuruField')
 var $searchActivityBtn = $('#searchActivityBtn')
 var $allGurusBtn = $('#allGurusBtn')
 var $activitiesGuruCard = $('.activities-guru-card')
 
-$searchActivityField.keydown(function (e) {
+$searchActivityGuruField.keydown(function (e) {
     if (e.which == 13) {
-        runSearch()
+        runActivityGuruSearch()
     }
   })
 
   $searchActivityBtn.on('click' , function(){
+
     runActivityGuruSearch()
 })
 
 $allGurusBtn.on('click' , function(){
-    makeAllGuruList(user.zip)
+    $('#errorSpan').text("")
+    $('.newCard').remove()
+    $('.act-guru-card').show()
+   
+    //makeAllGuruList(user.zip)
+   
+    
+    
 })
 
 
 function runActivityGuruSearch(){
    
-    
-    var searchText = $searchActivityField.val()
-    $searchActivityField.val('')
+    $('#errorSpan').text("")
+    $('.act-guru-card').hide()
+
+
+    var searchText = String($searchActivityGuruField.val())
+    $searchActivityGuruField.val('')
     
     var options = {
         url:'/activities/search/guru/'+ searchText,
@@ -144,8 +158,6 @@ function runActivityGuruSearch(){
 function makeActivityDIV(myDataObj){
     console.log('TRIGGERED GURU FUNCTION   :', myDataObj)
    
-    //$('.guru-card').hide()
-   
 
     if ( myDataObj.length === 0 ){
         $('#errorSpan').text("Sorry that Guru does not exist.")
@@ -154,8 +166,8 @@ function makeActivityDIV(myDataObj){
         $('#errorSpan').text("")
             for (x = 0; x < myDataObj.length; x++){  
                    
-                $('#results').append(`<div id="${myDataObj[x]._id}" class="guru-card newCard" style="width: 30rem; " >` +
-                `<h5 class="card-title">${myDataObj[x].type}</h5>`+   //TICK Marks !
+                $('#results').append(`<div id="${myDataObj[x]._id}" class="card act-guru-card newCard" style="width: 30rem; " >` +
+                `<h5 class="card-title">${myDataObj[x].name}</h5>`+   //TICK Marks !
                 '</div>')
                 //$activitycardDIV.attr('id', myDataObj[x]._id)
                 console.log('building div  :' , myDataObj[x]._id , '  ', myDataObj[x].name)
@@ -235,13 +247,13 @@ $activitiesGuruCard.on('click', function(){
 
 
 
-//----------------------------------------------------------------
+//--------------------------------------------------------------------
 //------------------END ACTIVITY/GURU SHOW----------------------------
-//----------------------------------------------------------------
-//----------------------------------------------------------------
+//--------------------------------------------------------------------
+//--------------------------------------------------------------------
 
   
-  
+////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////// GURUS INDEX \\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 var $searchGuruBtn = $('#searchGuruBtn')
@@ -314,3 +326,5 @@ $allGurusBtn.on('click', function(){
     $('.card').show()
 }) 
 
+////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\
