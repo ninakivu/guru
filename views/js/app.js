@@ -48,7 +48,7 @@ function makeDIV(myDataObj){
         $('#errorSpan').text("")
             for (x = 0; x < myDataObj.length; x++){  
                    
-                $('#results').append(`<div id="${myDataObj[x]._id}" class="card activity-card newCard ${myDataObj[x].css}" style="width: 18rem; " >` +
+                $('#results').append(`<div id="${myDataObj[x]._id}" class="activity-card newCard ${myDataObj[x].css}" style="width: 18rem; " >` +
                 '<div class="card-body">'+
                 `<p class="card-title">${myDataObj[x].type}</p>`+   //TICK Marks !
                 '</div></div>')

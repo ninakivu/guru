@@ -37,9 +37,30 @@
     text-align: center;
 }
 
+#activities-main{
+    
+    /*border: 1px solid blue;*/
+}
+
+.row-adjust{
+    
+}
+.col-adjust{
+    border: 0px solid blue;
+    
+}
+
+#results{
+    
+    border: 0px solid blue;
+}
+
 .activity-card{
     height:150px;
+    margin:5px;
+    border:0px solid rgb(25, 145, 145);
     border-radius: 15px 15px 15px 15px;
+    float: left;
 }
 
 .activity-card p{
