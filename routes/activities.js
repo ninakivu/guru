@@ -48,14 +48,14 @@ activityRouter.get('/:id', (req, res) => {
   })
 
 // SHOW Activity and SEARCH for GURU:
-activityRouter.get('/search/guru/:id', (req, res) => {
-  const regex = new RegExp(req.params.id,'i');
-  console.log('Search Term (server side)  :' , req.params.id)
-  Guru.find({$or: [{type: regex}]}, (err, results) => {
-    console.log('RESULTS   :', results  )
-    
-    res.json(results)
-  })
+activityRouter.get('/search/guru/:term', (req, res) => {
+  const regex = new RegExp(req.params.term,'i');
+  console.log('Search Term (server side)  :' , req.params.term)
+    Guru.find({$or: [{name: regex}, {zip: regex}, {studio: regex}]}, (err, results) => {
+      console.log('RESULTS   :', results  )
+      
+      res.json(results)
+    })
 
 })// END Activity and SEARCH for GURU
 
