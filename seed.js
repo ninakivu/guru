@@ -45,112 +45,148 @@ var gurus = [
 var activities = [
   {
     type: "Yoga",
-    picture_URL:"https://pbs.twimg.com/media/DTwuu2iVAAAWTRH.jpg"
+    picture_URL:"https://pbs.twimg.com/media/DTwuu2iVAAAWTRH.jpg",
+    css: "yoga"
   },
   {
-    type: "Pilates"
+    type: "Pilates",
+    css: "pilates"
   },
   {
-    type: "Boxing"
+    type: "Boxing", 
+    css: "boxing"
   },
   {
-    type: "Running"
+    type: "Running",
+    css: "running"
   },
   {
-    type: "Long Distance Running"
+    type: "Long Distance Running",
+    css: "ldrunning"
   },
   {
-    type: "Barre"
+    type: "Barre",
+    css: "barre"
   },
   {
-    type: "Free Weights"
+    type: "Free Weights",
+    css: "freeweights"
   },
   {
-    type: "Martial Arts"
+    type: "Martial Arts",
+    css: "martialarts"
   },
   {
-    type: "Rowing"
+    type: "Rowing",
+    css: "rowing"
   },
   {
-    type: "Cycling"
+    type: "Cycling",
+    css: "cycling"
   },
   {
-    type: "Dance"
+    type: "Dance",
+    css: "dance"
   },
   {
-    type: "Meditation"
+    type: "Meditation",
+    css: "meditation"
   },
   {
-    type: "Zumba"
+    type: "Spiritual Awakening",
+    css: "spiritualawakening"
   },
   {
-    type: "Spiritual Awakening"
+    type: "Moon Ceremony",
+    css: "moonceremony"
   },
   {
-    type: "Moon Ceremony"
+    type: "Lunar Hikes",
+    css: "lunarhikes"
   },
   {
-    type: "Lunar Hikes"
+    type: "Nutrition",
+    css: "nutrition"
   },
   {
-    type: "Nutrition"
+    type: "Tantric Dance",
+    css: "tantricdance"
   },
   {
-    type: "Tantric Dance"
+    type: "Hot Yoga",
+    css: "hotyoga"
   },
   {
-    type: "Hot Yoga"
+    type: "Pre and Post-natal Yoga",
+    css: "natalyoga"
   },
   {
-    type: "Pre and Post-natal Yoga"
+    type: "Pranayama",
+    css: "pranayama"
   },
   {
-    type: "Pranayama"
+    type: "Midwife",
+    css: "midwife"
   },
   {
-    type: "Midwife"
+    type: "Acrobatics",
+    css: "acrobatics"
   },
   {
-    type: "Acrobatics"
+    type: "Body Pump",
+    css: "bodypump"
   },
   {
-    type: "Body Pump"
+    type: "Crossfit",
+    css: "crossfit"
   },
   {
-    type: "Crossfit"
+    type: "Calisthenics",
+    css: "calisthenics"
   },
   {
-    type: "Calisthenics"
+    type: "Kettlebell",
+    css: "kettlebell"
   },
   {
-    type: "Kettlebell"
+    type: "Core",
+    css: "core"
   },
   {
-    type: "Core"
+    type: "Zumba",
+    css: "zumba"
   },
   {
-    type: "Zumba"
+    type: "TRX",
+    css: "trx"
   },
   {
-    type: "TRX"
+    type: "Chanting",
+    css: "chanting"
   },
   {
-    type: "Chanting"
+    type: "Yoga Nidra",
+    css: "yoganidra"
   },
   {
-    type: "Yoga Nidra"
+    type: "Spinning",
+    css: "spinning"
   },
   {
-    type: "Spinning"
+    type: "Marathon Training",
+    css: "marathontraining"
   },
   {
-    type: "Marathon Training"
+    type: "Fencing",
+    css: "fencing"
   },
   {
-    type: "Fencing"
+    type: "Self Defense",
+    css: "selfdefense"
   },
   {
-    type: "Self Defense"
+    type: "Pole Dancing",
+    css: "poledancing"
   }
 ]
 var studios = [
