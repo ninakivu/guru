@@ -5,7 +5,7 @@ const
     name: {type: String},
     email: {type: String},
     password: {type: String},
-    zip: {type: Number},
+    zip: {type: String},
     activities: [{type: mongoose.Schema.Types.ObjectId, ref: 'Activity'}], 
     studios: [{type: mongoose.Schema.Types.ObjectId, ref: 'Studio'}], 
     reviews: [String],
