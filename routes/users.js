@@ -58,7 +58,11 @@ userRouter.post('/user-signup', passport.authenticate('user-local-signup', {
 userRouter.get('/user-profile', isLoggedIn, (req, res) => {
 
     //^^^^^^^^^^^^^^ checks middleware for Logged-in, if True, continue to 'NEXT'
-    res.render('user-profile', {user: req.user})
+   
+    Activity.find({}, (err, allDemActivities) => {
+        if(err) return console.log(err)
+        res.render('user-profile', {user: req.user, activities: allDemActivities})
+    })
 })
 
 // PROFILE - EDIT --------------
@@ -83,11 +87,24 @@ userRouter.patch('/user-edit', isLoggedIn, (req, res) => {
 
     User.findById(req.user.id)
         .exec()
-        .then((user) => {
-            user.favorites.push(req.body.favorites)
-            user.save()
-            console.log(user)
-        })
+        .then((myUser) => {
+
+            const userUpdateData = {}    //make a new object
+            for(field in req.body) {        //for each field in req.body
+                if(req.body[field] != "") userUpdateData[field] = req.body[field]  //if req.body field is NOT empty, then save filled field into NEW field AND OBJECT (userUpdateData)
+            }
+            Object.assign(myUser, userUpdateData)  //push userUpdateData INTO myUser; myUser is updated 
+            const user = {...myUser, ...userUpdateData}
+
+            //user.favorites.push(req.body.favorites)
+            myUser.save((err, savedUser) => {
+                if(err) return console.log(err)
+                console.log('saved USER   :', savedUser)
+
+                res.redirect('/user-profile')
+            }) //end SAVE
+            
+        }) //end myUSer func
 
         // (err, myUser) => {
         // if(err) return console.log(err)
@@ -95,7 +112,7 @@ userRouter.patch('/user-edit', isLoggedIn, (req, res) => {
         // filter out empty fields:: empty fields may overwrite current fields if not removed
         // const userUpdateData = {}    //make a new object
         // console.log('MY USER res   :', myUser)
-        //myUser.favorties[myUser.favorties] = req.body.favorites
+        //
         
         // for(field in req.body) {        //for each field in req.body
         //     if(req.body[field] != "") userUpdateData[field] = req.body[field]  //if req.body field is NOT empty, then save filled field into NEW field AND OBJECT (userUpdateData)
@@ -103,7 +120,7 @@ userRouter.patch('/user-edit', isLoggedIn, (req, res) => {
 
         // merge what's left into the user
         //  Object.assign(myUser, userUpdateData)  //push userUpdateData INTO myUser; myUser is updated 
-        //const user = {...myUser, ...userUpdateData}
+        // const user = {...myUser, ...userUpdateData}
 
         // myUser.save((err, savedUser) => {    //save myUser, return new savedUser
         //     if(err) return console.log(err)
@@ -114,6 +131,35 @@ userRouter.patch('/user-edit', isLoggedIn, (req, res) => {
     // }) //END FindBy
     
 })// END EDIT/PATCH --------------
+
+
+
+// PROFILE - EDIT/PATCH/FAVORITES  --------------
+userRouter.patch('/user-favorites', isLoggedIn, (req, res) => {
+    console.log('PATCH TRIGGERED')
+    //console.log(req.body)
+    console.log(req.user)
+    console.log('user id  ', req.user.id)
+    console.log('USER  fav:', req.user.favorites, 'req.BODY :', req.body)
+    console.log('req.BODY FAVORITES :', req.body.favorites)
+
+    User.findById(req.user.id)
+        .exec()
+        .then((user) => {
+
+            user.favorites.push(req.body.favorites)
+            
+            user.save((err, savedUser) => {
+                if(err) return console.log(err)
+                console.log('saved USER/FAVORITES   :', savedUser)
+               
+                res.redirect('/user-profile')
+            }) //end SAVE
+            
+        }) //end myUSer func
+})// END EDIT/PATCH/FAVORITES --------------
+
+
 
 
 // PROFILE - DELETE --------------

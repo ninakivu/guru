@@ -45,21 +45,6 @@
       <br>
     </div>
 
-    <form method="POST" action="/user-edit?_method=PATCH">
-      <label class="mr-sm-2" for="inlineFormCustomSelect activity-input">My Favorites</label>
-       <div class="col-6">
-         <select class="custom-select mr-sm-2" id="inlineFormCustomSelect activity" name="favorites">
-           <option selected>Choose...</option>
-             <% activities.forEach((activity) => { %>
-               <option value="<%= activity.type %>"><%= activity.type %></option>
-             <% }) %>  
-         </select>
-       </div>
-       <div class="col-auto my-1">
-         <button type="submit" class="btn btn-primary" id="add-activity">Add</button> 
-       </div>
-     </form>
-
     <div class="form-group">
       <label for="exampleInputZipl1">Profile Picture URL:</label>
       <input type="profileURL" class="form-control" id="user-pictureURL" name="picture_url" value="<%= user.picture_url %>" aria-describedby="profileURLHelp" placeholder="Profile URL">
@@ -80,6 +65,21 @@
     <button type="submit" class="btn btn-primary">Update Profile</button>
   </form>
   <br>
+  <form method="POST" action="/user-favorites?_method=PATCH">
+    <label class="mr-sm-2" for="inlineFormCustomSelect activity-input">My Favorites</label>
+     <div class="col-6">
+       <select class="custom-select mr-sm-2" id="inlineFormCustomSelect activity" name="favorites">
+         <option selected>Choose...</option>
+           <% activities.forEach((activity) => { %>
+             <option value="<%= activity.type %>"><%= activity.type %></option>
+           <% }) %>  
+       </select>
+     </div>
+     <div class="col-auto my-1">
+       <button type="submit" class="btn btn-primary" id="add-activity">Add</button> 
+     </div>
+   </form>
+   <br>
   <br>
   <form method="POST" action="/user-delete?_method=DELETE" enctype="application/x-www-form-urlencoded">
       <button type="submit" id="deleteProfileBtn" class="btn btn-secondary">Delete Profile</button>

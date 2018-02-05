@@ -143,12 +143,23 @@ body{
     border: green 0px solid;
     padding: 0px 100px 0px 75px;
     text-align: center;
-    
-  
 }
+#my_guru_card li{
+    
+    list-style-type: none;
+    padding: 0px;
+    margin:0px;
+}
+
 #my_guru_card h5{
     margin-bottom: 40px;  
 }
+
+#my_guru_card_favorites{
+    margin:0;
+    padding: 0;
+}
+
 
 #activities-main{
     
