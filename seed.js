@@ -14,32 +14,37 @@ var gurus = [
     name: "Mark Strong",
     email: "mark@guru.com",
     studio: "Get Strong West LA",
-    zip:"91792"
+    zip:"91792",
+    picture_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Mark_Strong_%28Berlin_Film_Festival_2011%29.jpg/220px-Mark_Strong_%28Berlin_Film_Festival_2011%29.jpg"
 
   },
   {
     name: "Philippe",
     email: "philippe@guru.com",
     studio: "Brutal Gym",
-    zip:"90038"
+    zip:"90038",
+    picture_url:"https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/9/3/c/8/3e93-8ef2-49e3-827c-90a396bb601a.jpg"
   },
   {
     name: "Dylan",
     email: "dylan@guru.com",
     studio: "Get Shredded",
-    zip:"90272"
+    zip:"90272",
+    picture_url:"https://i.kinja-img.com/gawker-media/image/upload/s--xZn9q6km--/18ersq53ma05rjpg.jpg"
   },
   {
     name: "Ninja",
     email: "ninja@guru.com",
     studio: "Ninja",
-    zip:"90291"
+    zip:"90291",
+    picture_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Melania_Trump_Official_Portrait.jpg/399px-Melania_Trump_Official_Portrait.jpg"
   },
   {
     name: "Jimmy",
     email: "jimmy@guru.com",
     studio: "Take Breaks",
-    zip:"90038"
+    zip:"90038",
+    picture_url:"https://ga-core.s3.amazonaws.com/production/uploads/instructor/image/3684/thumb_IMG_9270__1_.JPG"
   },
 ]
 

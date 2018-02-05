@@ -60,6 +60,18 @@
     border: 0px solid blue;
 }
 
+#card-profile-div{
+    overflow: hidden;
+    width:100%;
+    height:200px;
+    margin-bottom: 10px;
+
+}
+#card-profile{
+    width:100%;
+    
+}
+
 .activity-card{
     height:150px;
     margin:5px;
@@ -79,7 +91,7 @@
 
 .activities-guru-card{
 
-    width: 200px;;
+    width: 200px;
     height:100%;
     margin:5px;
     border:1px solid rgb(25, 145, 145);

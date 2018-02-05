@@ -21,6 +21,9 @@
   <% gurus.forEach((guru) => { %>  <!-- new METHOD to go through object -->
     <div id="<%= guru.id %>"  class="card guru-card activities-guru-card" style="width: 18rem; " >
         <div class="card-body">
+            <div id="card-profile-div">
+            <img id="card-profile" src="<%= guru.picture_url %>">
+            </div>
             <h5 class="card-title"><%= guru.name %></h5>
             
             Location: <%= guru.zip %>
