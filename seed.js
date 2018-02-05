@@ -15,7 +15,8 @@ var gurus = [
     email: "mark@guru.com",
     studio: "Get Strong West LA",
     zip:"91792",
-    picture_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Mark_Strong_%28Berlin_Film_Festival_2011%29.jpg/220px-Mark_Strong_%28Berlin_Film_Festival_2011%29.jpg"
+    picture_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Mark_Strong_%28Berlin_Film_Festival_2011%29.jpg/220px-Mark_Strong_%28Berlin_Film_Festival_2011%29.jpg",
+    class: "guru"
 
   },
   {
@@ -23,28 +24,32 @@ var gurus = [
     email: "philippe@guru.com",
     studio: "Brutal Gym",
     zip:"90038",
-    picture_url:"https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/9/3/c/8/3e93-8ef2-49e3-827c-90a396bb601a.jpg"
+    picture_url:"https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/9/3/c/8/3e93-8ef2-49e3-827c-90a396bb601a.jpg",
+    class: "guru"
   },
   {
     name: "Dylan",
     email: "dylan@guru.com",
     studio: "Get Shredded",
     zip:"90272",
-    picture_url:"https://i.kinja-img.com/gawker-media/image/upload/s--xZn9q6km--/18ersq53ma05rjpg.jpg"
+    picture_url:"https://i.kinja-img.com/gawker-media/image/upload/s--xZn9q6km--/18ersq53ma05rjpg.jpg",
+    class: "guru"
   },
   {
     name: "Ninja",
     email: "ninja@guru.com",
     studio: "Ninja",
     zip:"90291",
-    picture_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Melania_Trump_Official_Portrait.jpg/399px-Melania_Trump_Official_Portrait.jpg"
+    picture_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Melania_Trump_Official_Portrait.jpg/399px-Melania_Trump_Official_Portrait.jpg",
+    class: "guru"
   },
   {
     name: "Jimmy",
     email: "jimmy@guru.com",
     studio: "Take Breaks",
     zip:"90038",
-    picture_url:"https://ga-core.s3.amazonaws.com/production/uploads/instructor/image/3684/thumb_IMG_9270__1_.JPG"
+    picture_url:"https://ga-core.s3.amazonaws.com/production/uploads/instructor/image/3684/thumb_IMG_9270__1_.JPG",
+    class: "guru"
   },
 ]
 
