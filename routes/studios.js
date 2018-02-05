@@ -6,7 +6,8 @@ const
   Activity = require('../models/Activity.js'),
   Guru = require('../models/Guru.js'),
   User = require('../models/User.js'),
-  Studio = require('../models/Studio.js')
+  Studio = require('../models/Studio.js'),
+  request = require('request')
 
 // Studios:
 studiosRouter.get('/', (req, res) => {
@@ -21,7 +22,12 @@ studiosRouter.get('/', (req, res) => {
 studiosRouter.get('/:id', (req, res) => {
   Studio.findById(req.params.id).populate('activities').populate('gurus').exec((err, thatStudio) => {
     if(err) return console.log(err)
-    res.render('studio-show', {studio: thatStudio})
+    var geocodeAPIUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${thatStudio.location}&key=${process.env.MAPS_KEY}`
+    request(geocodeAPIUrl, (err, response, body) => {
+      var coordinates = (JSON.parse(body).results[0].geometry.location)
+      res.render('studio-show', {studio: thatStudio, coordinates})
+    })
+    
   })
 })
 

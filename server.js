@@ -60,7 +60,7 @@ app.use(methodOverride('_method'))  //Method Override
 app.use(express.static(`${__dirname}/views`))
 
 app.get('/auth/facebook',
-  passport.authenticate('facebook'));
+  passport.authenticate('facebook', { scope: ['email']}));
  
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
