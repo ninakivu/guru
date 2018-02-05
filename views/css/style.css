@@ -15,12 +15,17 @@
     height:600px;
     float: left;
     display: inline-block;
-    text-align:center;
+    
+    overflow: hidden;
+
 }
 .guru-col-left img{
    
-    width:150px;
-    margin: 100px 0px auto 0px;
+    height: 100%;
+   
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .guru-col-right{
@@ -252,7 +257,7 @@
     font-weight: bold;
     text-shadow: -1px 0 white, 0 1px darkgrey, 1px 0 black, 0 -1px white;
     margin-top: 55px;
-    color: lightskyblue;
+    color: rgb(57, 155, 155);
 }
 .pranayama{
     background-image: url("/images/Pranayama_1.jpg");
@@ -414,6 +419,11 @@
     color: white;
     text-shadow: 1px 0 white, 0 3px teal, 1px 0 black, 0 0px white;
 
+}
+
+.call-natalyoga{
+  color:lightgrey;
+    
 }
 
 #activity-description{
