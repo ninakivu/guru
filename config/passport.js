@@ -2,13 +2,14 @@ require('dotenv').config()
 const   
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
+    FacebookStrategy = require('passport-facebook').Strategy,
     flash = require('connect-flash'),
     User = require('../models/User.js'),
     Guru = require('../models/Guru.js'),
 
-
     appId = process.env.APP_ID,
-    appSecret = process.env.APP_SECRET
+    appSecret = process.env.APP_SECRET,
+    mapsKey = process.env.MAPS_KEY
 
  // USER:
 passport.serializeUser((user, done) => {    //what of the user will be stored in cookie
@@ -94,17 +95,17 @@ passport.use('guru-local-login', new LocalStrategy({
 
 // FACEBOOK LOGIN:
 
-// passport.use(new FacebookStrategy({
-//     clientID: appId,
-//     clientSecret: appSecret,
-//     callbackURL: "http://localhost:3000/auth/facebook/callback"
-//   },
-//   function(accessToken, refreshToken, profile, cb) {
-//     User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-//       return cb(err, user);
-//     });
-//   }
-// ));
+passport.use(new FacebookStrategy({
+    clientID: appId,
+    clientSecret: appSecret,
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
 
 
 
