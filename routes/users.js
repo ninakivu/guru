@@ -63,7 +63,12 @@ userRouter.get('/user-profile', isLoggedIn, (req, res) => {
 
 // PROFILE - EDIT --------------
 userRouter.get('/user-edit', isLoggedIn, (req, res) => {
-    res.render('user-edit', {user: req.user})
+    console.log('USER  fav:', req.user.favorites, 'BODY favs:', req.body)
+    Activity.find({}, (err, allDemActivities) => {
+        if(err) return console.log(err)
+        res.render('user-edit', {user: req.user, activities: allDemActivities})
+    })
+    
 
 })
 
@@ -73,27 +78,40 @@ userRouter.patch('/user-edit', isLoggedIn, (req, res) => {
     //console.log(req.body)
     console.log(req.user)
     console.log('user id  ', req.user.id)
+    console.log('USER  fav:', req.user.favorites, 'req.BODY :', req.body)
+    console.log('req.BODY FAVORITES :', req.body.favorites)
 
-    User.findById(req.user.id, (err, myUser) => {
-        if(err) return console.log(err)
+    User.findById(req.user.id)
+        .exec()
+        .then((user) => {
+            user.favorites.push(req.body.favorites)
+            user.save()
+            console.log(user)
+        })
+
+        // (err, myUser) => {
+        // if(err) return console.log(err)
         
         // filter out empty fields:: empty fields may overwrite current fields if not removed
-        const userUpdateData = {}    //make a new object
-        for(field in req.body) {        //for each field in req.body
-            if(req.body[field] != "") userUpdateData[field] = req.body[field]  //if req.body field is NOT empty, then save filled field into NEW field AND OBJECT (userUpdateData)
-        }
+        // const userUpdateData = {}    //make a new object
+        // console.log('MY USER res   :', myUser)
+        //myUser.favorties[myUser.favorties] = req.body.favorites
+        
+        // for(field in req.body) {        //for each field in req.body
+        //     if(req.body[field] != "") userUpdateData[field] = req.body[field]  //if req.body field is NOT empty, then save filled field into NEW field AND OBJECT (userUpdateData)
+        // }
 
         // merge what's left into the user
-         Object.assign(myUser, userUpdateData)  //push userUpdateData INTO myUser; myUser is updated 
+        //  Object.assign(myUser, userUpdateData)  //push userUpdateData INTO myUser; myUser is updated 
         //const user = {...myUser, ...userUpdateData}
 
-        myUser.save((err, savedUser) => {    //save myUser, return new savedUser
-            if(err) return console.log(err)
-            console.log(savedUser)
-            res.redirect('/user-profile')
-        }) //end save
+        // myUser.save((err, savedUser) => {    //save myUser, return new savedUser
+        //     if(err) return console.log(err)
+        //     console.log(savedUser)
+        //     res.redirect('/user-profile')
+        // }) //end save
 
-    }) //END FindBy
+    // }) //END FindBy
     
 })// END EDIT/PATCH --------------
 

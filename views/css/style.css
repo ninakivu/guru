@@ -12,6 +12,16 @@
     height:50px;
 }
 
+#navbar-brand-guru{
+    margin:0px;
+    padding: 0px;
+    font-size: 25pt;
+    float: right;
+    margin-top: 4px;
+    font-family: 'champagne__limousinesregular';
+
+}
+
 body{
     
     background-repeat: no-repeat;
@@ -132,10 +142,12 @@ body{
 #my_guru_card {
     border: green 0px solid;
     padding: 0px 100px 0px 75px;
+    text-align: center;
+    
   
 }
-#my_guru_card h2, h5{
-    text-align: center;
+#my_guru_card h5{
+    margin-bottom: 40px;  
 }
 
 #activities-main{

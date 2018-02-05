@@ -8,8 +8,8 @@ const
         email: String,
         password: String,
         gender: String,
-        zip: Number,
-        favorites: String,
+        zip: {type: String},
+        favorites: [String],
         picture_url: String,
         background_url: String,
         class: {type: String}
