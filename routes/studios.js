@@ -1,5 +1,4 @@
 const
-<<<<<<< HEAD
   express = require('express'),
   studiosRouter = new express.Router(),
   flash = require('connect-flash'),
@@ -14,6 +13,15 @@ studiosRouter.get('/', (req, res) => {
   Studio.find({}, (err, allDemStudios) => {
     if(err) return console.log(err)
     res.render('studios-index', {studios: allDemStudios})
+  })
+})
+
+
+// Show a specific Studio:
+studiosRouter.get('/:id', (req, res) => {
+  Studio.findById(req.params.id).populate('activities').populate('gurus').exec((err, thatStudio) => {
+    if(err) return console.log(err)
+    res.render('studio-show', {studio: thatStudio})
   })
 })
 
@@ -36,21 +44,3 @@ studiosRouter.post('/', (req, res) => {
 })
 
 module.exports = studiosRouter
-=======
-express = require('express'),
-app = express(),
-studioRouter = new express.Router(),
-
-Guru = require('../models/Guru.js'),
-User = require('../models/User.js'),
-Activity = require('../models/Activity.js'), 
-Studio = require('../models/Studio.js')
-
-// SHOW a specific studio:
-studioRouter.get('/:id', (req, res) => {
-    Studio.findById(req.params.id, (err, datStudio) => {
-        if(err) return console.log(err)   
-        res.render('studio-show', {Studio: datStudio})  
-    }) 
-})
->>>>>>> 05dd8dc04bcc7759260e94f2ff5bf3d0c0fcfbe7
