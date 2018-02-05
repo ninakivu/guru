@@ -121,7 +121,7 @@ app.use('/studios', studioRoutes)
 ////////// Google Maps:
 
 var googleMapsClient = require('@google/maps').createClient({
-  key: mapsKey
+  key: 'AIzaSyCta033lPO-tJ92SIazzsIWrMWrW5SxFzk'
 });
   
 // Geocode an address.
