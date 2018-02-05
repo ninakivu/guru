@@ -18,8 +18,17 @@
                             
                                     <h5><%= user.email %></h5>
                                     <p><%= user.zip %></p>
+                                    <br>
                                     <p><%= user.gender %></p>
-                                    <p><%= user.favorites %></p>
+
+                                    <p id="my_guru_card_favorites">Favorites:</p> 
+                                    <% user.favorites.forEach(function(a) { %>
+                                        <% for (b=0; b < activities.length; b++) { %>
+                                           <% if (activities[b].type === a){ %>
+                                                <li><a href="/activities/<%= activities[b]._id %>"><%= a %></a></li>
+                                            <% } %>
+                                        <% } %>
+                                    <% }) %>
                                 <br>
                                 <br>
                              </div> <!--  END CARD -->
