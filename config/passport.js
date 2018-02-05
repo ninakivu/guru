@@ -38,6 +38,8 @@ passport.use('user-local-signup', new LocalStrategy({
         newUser.name = req.body.name
         newUser.email = req.body.email
         newUser.password = newUser.generateHash(password)
+        newUser.class = "user"
+        newUser.picture_url = "/images/Guru_Pathik_adj.png"
         newUser.save((err, brandNewUser) =>{
         if(err) return  console.log(err)
         return done(null, brandNewUser, null)
@@ -72,6 +74,8 @@ passport.use('guru-local-signup', new LocalStrategy({
         newGuru.name = req.body.name
         newGuru.email = req.body.email
         newGuru.password = newGuru.generateHash(password)
+        newGuru.class = "guru"
+        newGuru.picture_url = "/images/Guru_Pathik_adj.png"
         newGuru.save((err, brandNewGuru) => {
             if(err) return console.log(err)
             return done(null, brandNewGuru, null)

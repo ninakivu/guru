@@ -40,6 +40,7 @@ gurusAllRouter.get('/search/:term', (req, res) => {
 gurusAllRouter.post('/', (req,res) => {
   var newGuru = new Guru(req.body)
   newGuru.name = req.body.name
+  newGuru.picture_url = "http://ww1.prweb.com/prfiles/2015/04/27/12682663/Hot-Spot-Guru-Icon-Logo.png"
   Activity.find({type: req.body.activities}, (err, thatActivity) => {
     newGuru.activities = thatActivity._id
   })

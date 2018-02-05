@@ -1,30 +1,31 @@
 <div class="page-header">
-
-    <h1><%= user.name %></h1>
-
-    <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-
-</div>
-<div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-        <div class="well">
-
-            <h3>Locally Stored User</h3>
-
-            <p>
-                <strong>Name</strong>: <%= user.name %><br>
-                <strong>id</strong>: <%= user._id %><br>
-                <strong>email</strong>: <%= user.email %><br>
-                <strong>password</strong>: <%= user.password %><br>
-                <strong>zip</strong>: <%= user.zip %><br>
-                <strong>gender</strong>: <%= user.gender %><br>
-                <strong>favorites</strong>: <%= user.favorites %><br>
-                <strong>picture_url</strong>: <%= user.picture_url %><br>
-                <strong>background_url</strong>: <%= user.background_url %><br>
-
-            </p>
-                <a href="/user-edit">Edit Profile</a>
-                <BR>
-        </div>
+        <h1><Profile</h1>
+        <a href="/user-edit" class="btn btn-default btn-sm">Edit Profile</a>
     </div>
-</div>
+    <div class="row-lg-12">
+        <div id="guru_show_namecard">
+            <div class="col-lg-5 col-sm-offset-3 guru-col-left">
+    
+                    <img id="" src="<%= user.picture_url %>"  >
+                        
+                        
+                        
+            </div> <!-- END COL -->
+            <div class="col-lg-7 col-sm-offset-6 guru-col-right">
+                            <div id="my_guru_card">
+                                  
+                                    <h2><%= user.name %> </h2>
+                            
+                                    <h5><%= user.email %></h5>
+                                    <p><%= user.zip %></p>
+                                    <p><%= user.gender %></p>
+                                    <p><%= user.favorites %></p>
+                                <br>
+                                <br>
+                             </div> <!--  END CARD -->
+            </div><!-- END COL -->
+    
+        </div>  <!--  END user_show_namecard -->
+    </div> <!-- END ROW -->
+
+    

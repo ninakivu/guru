@@ -5,6 +5,12 @@ var $searchField = $('#searchField')
 var $activitycardDIV = $('.activity-card')
 var $allActivitiesBtn = $('#allActivitiesBtn')
 
+
+
+
+
+
+
 $searchField.keydown(function (e) {
     if (e.which == 13) {
         runSearch()
