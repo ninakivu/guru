@@ -11,8 +11,8 @@ const
         zip: Number,
         favorites: String,
         picture_url: String,
-        background_url: String
-
+        background_url: String,
+        facebookId: String
         
     })
 
