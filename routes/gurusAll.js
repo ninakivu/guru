@@ -16,7 +16,7 @@ gurusAllRouter.get('/', (req, res) => {
   })
 })
 
-// POST/SEARCH all activities:
+// POST/SEARCH all GURUS:
 gurusAllRouter.get('/search/:term', (req, res) => {
   const regex1 = new RegExp(req.params.term,'i');
   console.log('Search Term (server side)  :' , req.params.term)

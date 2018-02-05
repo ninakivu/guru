@@ -1,10 +1,31 @@
-<% studios.forEach((s) => { %>
-  <div id="activity-card" class="card" style="width: 18rem; " >
-      <div class="card-body">
-        <h5 class="card-title"><%= s.name %></h5>
-        <p class="card-text"><%= s.location %></p>
-        
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-    </div> <!-- end activities -->
-<% }) %>
+<style> 
+    .studio-card{
+        float: left;
+    }
+</style>
+
+<div id="studios-main">
+    <h1>Studios</h1>
+    <h3> Where do you want to train today?</h3>
+    <div class="form-group">
+      <label for="exampleInputEmail1"></label>
+      <input type="search" class="form-control" id="searchStudioField" aria-describedby="searchHelp" placeholder="Search...">
+      <small id="searchHelp" class="form-text text-muted">Search by Studio or Location</small>
+    </div>
+    <button type="search"  id="searchStudioBtn" class="btn btn-primary">Search</button>
+    <button type="search"  id="allStudiosBtn" class="btn btn-info">All Studios</button>
+    <span id="errorSpan"></span>
+    <br>
+    <div id='results'>
+    <% studios.forEach((studio) => { %>  
+      <div id="<%= studio.id %>"  class="card studio-card" style="width: 18rem; " >
+        <div class="card-body">
+          <h5 class="card-title"><%= studio.name %></h5>
+          <p class="card-text"><%= studio.location %></p>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div> 
+    <% }) %>
+  </div>
+  
+  <script src="/js/app.js"></script>

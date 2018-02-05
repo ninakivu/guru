@@ -288,3 +288,77 @@ $allGurusBtn.on('click', function(){
 
 ////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+// STUDIOS INDEX:
+
+var $searchStudioBtn = $('#searchStudioBtn')
+var $searchStudioField = $('#searchStudioField')
+var $studioCard = $('.studio-card')
+var $allStudiosBtn = $('#allStudiosBtn')
+
+$searchStudioField.keydown(function(e) {
+    if (e.which == 13) {
+        runSearch()
+    }
+})
+$searchStudioBtn.on('click' , function(){
+    console.log('btn working')
+    runSearchStudio()
+})
+
+function runSearchStudio(){
+    var searchText = $searchStudioField.val()
+    $searchStudioField.val('')
+    var options = {
+        url:'/studios/search/'+ searchText,
+        method: 'get',
+        contentType:'application/json',  //tells server whats coming
+        data: JSON.stringify({body: searchText})   
+        }
+
+ $.ajax(options).done(function(dataThatCameBack){  
+    console.log('my data:  ', dataThatCameBack)   
+    makeDIVstudio(dataThatCameBack) 
+ }) 
+} 
+
+function makeDIVstudio(myStudioObj){
+    console.log('TRIGGERED FUNCTION   :', myStudioObj)
+    $('.card').hide()
+    if ( myStudioObj.length === 0 ){
+        $('#errorSpan').text("Sorry that Studio is not avaiable at this time.")
+        console.log('no search  :' , myStudioObj)
+    } else {
+        $('#errorSpan').text("")
+        for (x = 0; x < myStudioObj.length; x++){  
+                   
+            $('#results').append(`<div id="${myStudioObj[x]._id}" class="card studio-card newCard" style="width: 18rem; " >` +
+            
+            `<h5 class="card-title">${myStudioObj[x].name}</h5>`+ 
+            `<div class="card-body">${myStudioObj[x].location}</h5>`+  
+            '</div></div>')
+            console.log('building card  :' , myStudioObj[x]._id)
+            $('.studio-card').on('click', function(){
+
+                var id = $(this).attr("id")
+                console.log('selecting: '+ id)
+                window.location.href = `/studios/` + id
+            }) 
+        }  
+    }
+}  
+
+
+$studioCard.on('click', function(){
+    var id = $(this).attr("id")
+    console.log('selecting: '+ id)
+    window.location.href = `/studios/` + id
+}) 
+
+$allStudiosBtn.on('click', function(){
+    $('#errorSpan').text("")
+    $('.newCard').remove()
+    $('.card').show()
+}) 
+
+/////////////////////////////////////////////

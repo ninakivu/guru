@@ -24,6 +24,7 @@ const
   guruRoutes = require('./routes/gurus.js'),
   activityRoutes = require('./routes/activities.js'),
   gurusAllRoutes = require('./routes/gurusAll.js'),
+  studioRoutes = require('./routes/studios.js')
 
 // Models:
   Guru = require('./models/Guru.js'),
@@ -112,20 +113,11 @@ app.use('/gurus', gurusAllRoutes)
 // Activity Routes:
 app.use('/activities', activityRoutes)
 
-// Studios:
-app.get('/studios', (req, res) => {
-  Studio.find({}, (err, allDemStudios) => {
-    if(err) return console.log(err)
-    res.render('studios-index', {studios: allDemStudios})
-  })
-})
+// Studio Routes:
+app.use('/studios', studioRoutes)
 
-// Create Studio:
-app.post('/studios', (req, res) => {
-  Studio.create(req.body, (err, brandNewStudio) => {
-    res.json({message: "Studio created", Studio: brandNewStudio})
-  })
-})
+
+
 
 
 app.listen(port, (err) => {
