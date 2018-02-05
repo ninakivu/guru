@@ -18,6 +18,7 @@ const
 
   appId = process.env.APP_ID,
   appSecret = process.env.APP_SECRET,
+  mapsKey = process.env.MAPS_KEY
 
 // Routes:
   userRoutes = require('./routes/users.js'),
@@ -120,7 +121,7 @@ app.use('/studios', studioRoutes)
 ////////// Google Maps:
 
 var googleMapsClient = require('@google/maps').createClient({
-  key: 'AIzaSyCta033lPO-tJ92SIazzsIWrMWrW5SxFzk'
+  key: mapsKey
 });
   
 // Geocode an address.
@@ -131,10 +132,6 @@ googleMapsClient.geocode({
     console.log(response.json.results);
   }
 });
-
-
-
-
 
 
 app.listen(port, (err) => {
