@@ -278,7 +278,7 @@ var studios = [
   },
   {
     name: "Golds Gym",
-    location:"Venice"
+    location:"Venice, CA"
   },
   {
     name: "Meditation Station",
@@ -293,9 +293,18 @@ var studios = [
     location:"West LA"
   },
   {
-    name: "Power Hourr",
-    location:"Downtown"
+    name: "Muscle Hustle",
+    location:"Westwood, LA"
+  },
+  {
+    name: "Equinox",
+    location:"Beverly Hills"
+  },
+  {
+    name: "Gym 24/7",
+    location:"Brentwood, LA"
   }
+
 ]
 
 
