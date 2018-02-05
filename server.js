@@ -30,7 +30,7 @@ const
   Guru = require('./models/Guru.js'),
   Activity = require('./models/Activity.js'),
   Studio = require('./models/Studio.js')
-  
+
 
 
 // environment port
@@ -115,6 +115,23 @@ app.use('/activities', activityRoutes)
 
 // Studio Routes:
 app.use('/studios', studioRoutes)
+
+
+////////// Google Maps:
+
+var googleMapsClient = require('@google/maps').createClient({
+  key: 'AIzaSyCta033lPO-tJ92SIazzsIWrMWrW5SxFzk'
+});
+  
+// Geocode an address.
+googleMapsClient.geocode({
+  address: '1600 Amphitheatre Parkway, Mountain View, CA'
+}, function(err, response) {
+  if (!err) {
+    console.log(response.json.results);
+  }
+});
+
 
 
 
