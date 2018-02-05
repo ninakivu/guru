@@ -17,6 +17,8 @@
   <span id="errorSpan"></span>
   <br>
   
+  <div id="row container-fluid" >
+      <div class="col-lg-11 col-md-12 col-adjust container-fluid">
   <div id='results'>
   <% gurus.forEach((guru) => { %>  <!-- new METHOD to go through object -->
     <div id="<%= guru.id %>"  class="card guru-card activities-guru-card" style="width: 18rem; " >
@@ -47,6 +49,8 @@
       </div> -->
     </div>  <!-- end guru card -->
   <% }) %>
-</div>
+</div><!-- results -->
+</div><!-- end COL -->
+</div><!-- container -->
 
 <script src="/js/app.js"></script>

@@ -38,6 +38,8 @@ passport.use('user-local-signup', new LocalStrategy({
         newUser.name = req.body.name
         newUser.email = req.body.email
         newUser.password = newUser.generateHash(password)
+        newUser.class = "user"
+        newUser.picture_url = "/images/Guru_Pathik_adj.png"
         newUser.save((err, brandNewUser) =>{
         if(err) return  console.log(err)
         return done(null, brandNewUser, null)
@@ -72,6 +74,8 @@ passport.use('guru-local-signup', new LocalStrategy({
         newGuru.name = req.body.name
         newGuru.email = req.body.email
         newGuru.password = newGuru.generateHash(password)
+        newGuru.class = "guru"
+        newGuru.picture_url = "/images/Guru_Pathik_adj.png"
         newGuru.save((err, brandNewGuru) => {
             if(err) return console.log(err)
             return done(null, brandNewGuru, null)
@@ -95,7 +99,7 @@ passport.use('guru-local-login', new LocalStrategy({
 
 // FACEBOOK LOGIN:
 
-passport.use(new FacebookStrategy({
+passport.use('guru-fb-login', new FacebookStrategy({
     clientID: appId,
     clientSecret: appSecret,
     callbackURL: "http://localhost:3000/auth/facebook/callback",
@@ -105,24 +109,65 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'name', 'email', 'location']
   },
   function(accessToken, refreshToken, profile, cb) {
-      console.log(profile)
-      var me = new User({
-          email: profile.emails[0].value,
-          name: profile.name
-      })
-    User.findOrCreate({ 
-        facebookId: profile.id, 
-        name: profile.name, 
-        email: profile.email 
-    }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-));
+    var me = new Guru({
+        email: profile.emails[0].value,
+        name: profile.name
+    })
+    Guru.findOne({ email: me.email }, function(err, guru) {
+        if(err) return done(err)
+        if(!guru) {
+            me.save(function(err, me) {
+                if(err) return done(err)
+                done(null,me)
+            })
+        } else {
+            console.log(guru)
+            done(null, guru)
+        }
+    })
 
-console.log(User.findOrCreate)
+    console.log(profile)
+}
+))
+
+    // first check if a user with the email from facebook exists
+    // if so, use THAT user with the provided facebook id and then done()
+    // otherwise, create a new user with all the info from facebook and then done
 
 
+
+    passport.use('user-fb-login', new FacebookStrategy({
+        clientID: appId,
+        clientSecret: appSecret,
+        callbackURL: "http://localhost:3000/auth/facebook/callback",
+        profileURL: 'https://graph.facebook.com/v2.10/me',
+        authorizationURL: 'https://www.facebook.com/v2.10/dialog/oauth',
+        tokenURL: 'https://graph.facebook.com/v2.10/oauth/access_token',
+        profileFields: ['id', 'name', 'email', 'location']
+      },
+      function(accessToken, refreshToken, profile, done) {
+          console.log("USING FB STRATEGY")
+        var me = new User({
+            email: profile.emails[0].value,
+            name: profile.name
+        })
+        User.findOne({ email: me.email }, function(err, user) {
+            if(err) return done(err)
+            if(!user) {
+                console.log(me)
+                me.save(function(err, me) {
+                    if(err) return done(err)
+                    done(null,me)
+                })
+            } else {
+                console.log(user)
+                done(null, user)
+            }
+        })
+    
+        console.log(profile)
+    }
+    ))
 module.exports = passport //passport is now configured with our strategies 
 
 

@@ -25,7 +25,8 @@ const
   guruRoutes = require('./routes/gurus.js'),
   activityRoutes = require('./routes/activities.js'),
   gurusAllRoutes = require('./routes/gurusAll.js'),
-  studioRoutes = require('./routes/studios.js')
+  studioRoutes = require('./routes/studios.js'),
+  facebookRoutes = require('./routes/facebook.js')
 
 // Models:
   Guru = require('./models/Guru.js'),
@@ -58,16 +59,6 @@ app.use(bodyParser.json())
 app.use(flash())
 app.use(methodOverride('_method'))  //Method Override
 app.use(express.static(`${__dirname}/views`))
-
-app.get('/auth/facebook',
-  passport.authenticate('facebook', { scope: ['email']}));
- 
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/' }),
-  function(req, res) {
-    // Successful authentication, redirect home. 
-    res.redirect('/activities');
-  });
 
 
 // ejs configuration
@@ -116,6 +107,9 @@ app.use('/activities', activityRoutes)
 
 // Studio Routes:
 app.use('/studios', studioRoutes)
+
+// Facebook Routes:
+app.use('/auth/facebook', facebookRoutes)
 
 
 ////////// Google Maps:
