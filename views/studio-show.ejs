@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <style>
       #map {
-        height: 500px;
+        height: 300px;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -15,7 +15,7 @@
         padding: 0;
       }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCta033lPO-tJ92SIazzsIWrMWrW5SxFzk&callback=initMap"
+    <script src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_KEY}`
     async defer></script>
   </head>
   <body>
@@ -38,7 +38,7 @@
             }
         
             var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
+            zoom: 7,
             center: myLatLng
             });
         
