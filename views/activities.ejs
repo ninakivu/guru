@@ -1,14 +1,10 @@
 
 <style>
     
-    .activity-card{
-        float: left;
-        
-    }
-
+    
 </style>
 
-<div id="activities-main">
+<div id="activities-main" class="container-fluid">
 
     <h1>Activities</h1>
 
@@ -25,18 +21,20 @@
         <span id="errorSpan"></span>
 
       <br>
-      <div id='results'>
-    <% activities.forEach((activity) => { %>  <!-- new METHOD to go through object -->
-        <div id="<%= activity.id %>"  class="activity-card <%= activity.css %>" style="width: 18rem; " >
-            <div class="card-body">
-              <p class="card-title"><%= activity.type %></p>
-            </div>
-          </div> <!-- end activities -->
-         
-    <% }) %>
-    </div> <!-- end results -->
-   
-
+      <div class="row  container-fluid row-adjust">
+            <div class="col-lg-11 col-md-12 col-adjust container-fluid">
+                <div id='results'>
+                <% activities.forEach((activity) => { %>  <!-- new METHOD to go through object -->
+                    <div id="<%= activity.id %>"  class="activity-card <%= activity.css %>" style="width: 18rem; " >
+                        <div class="card-body">
+                        <p class="card-title"><%= activity.type %></p>
+                        </div>
+                    </div> <!-- end activities -->
+                    
+                <% }) %>
+                </div> <!-- end results -->
+    </div><!-- column -->
+</div><!-- row -->
 
 </div>
 <script src="/js/app.js"></script>

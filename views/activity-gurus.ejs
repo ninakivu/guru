@@ -9,9 +9,11 @@
 
 <div id="activities-main">
 <br>
-    <h2><%= activity.type %></h2>
-
-    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+    <div class="row-fluid activity-guru-picture" id="" >
+     <img src="<%= activity.picture_URL %>" class="">
+          <h2 class="act-h2"><%= activity.type %></h2>
+    </div>
+    <p id="activity-description"><%= activity.description %></p>
      
   <br>
 
@@ -31,10 +33,23 @@
 
     <% gurus.forEach((theGuru) => { %>  <!-- new METHOD to go through object -->
       
-      <div id="<%= theGuru.id %>"  class="card activities-guru-card act-guru-card " style="width: 18rem; " >
+      <div id="<%= theGuru.id %>"  class="activities-guru-card act-guru-card " >
           <div class="card-body">
             <h5 class="card-title"><%= theGuru.name %></h5>
             
+            Location: <%= theGuru.zip %>
+            <ul>
+                <li><b>Specialties:</b></li>
+            <% theGuru.activities.forEach((activity) => { %>
+                
+               <% for (x=0; x <  allAct.length; x++) { %>
+                            <% if (allAct[x].id === String(activity)) { %>
+                                <li><%= allAct[x].type %></li>
+                                <% } %>
+                  <% } %> 
+              <% }) %>
+            
+            </ul>
           </div>
         </div> <!-- end activities -->
   <% }) %>

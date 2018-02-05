@@ -48,7 +48,7 @@ function makeDIV(myDataObj){
         $('#errorSpan').text("")
             for (x = 0; x < myDataObj.length; x++){  
                    
-                $('#results').append(`<div id="${myDataObj[x]._id}" class="card activity-card newCard ${myDataObj[x].css}" style="width: 18rem; " >` +
+                $('#results').append(`<div id="${myDataObj[x]._id}" class="activity-card newCard ${myDataObj[x].css}" style="width: 18rem; " >` +
                 '<div class="card-body">'+
                 `<p class="card-title">${myDataObj[x].type}</p>`+   //TICK Marks !
                 '</div></div>')
@@ -166,19 +166,22 @@ function makeActivityDIV(myDataObj){
         $('#errorSpan').text("")
             for (x = 0; x < myDataObj.length; x++){  
                    
-                $('#results').append(`<div id="${myDataObj[x]._id}" class="card activities-guru-card act-guru-card newCard" style="width: 30rem; " >` +
-                `<h5 class="card-title">${myDataObj[x].name}</h5>`+   //TICK Marks !
-                '</div>')
-                //$activitycardDIV.attr('id', myDataObj[x]._id)
-                console.log('building div  :' , myDataObj[x]._id , '  ', myDataObj[x].name)
+                    $('#results').append(`<div id="${myDataObj[x]._id}" class="activities-guru-card act-guru-card newCard" >` +
+                    ' <div class="card-body">' +
+                    `<h5 class="card-title">${myDataObj[x].name}</h5>`+   //TICK Marks !
+                    '<ul><li><b>Location:</b></li>' +
+                    `<li>${myDataObj[x].zip}</li></ul>`+ 
+                    '</div></div>')
+                    //$activitycardDIV.attr('id', myDataObj[x]._id)
+                    console.log('building div  :' , myDataObj[x]._id , '  ', myDataObj[x].name)
 
-                $('.activities-guru-card').on('click', function(){
+                    $('.activities-guru-card').on('click', function(){
 
-                    var id = $(this).attr("id")
-                    console.log('selecting: '+ id)
-            
-                    window.location.href = `/gurus/` + id
-                }) //end CLICK
+                        var id = $(this).attr("id")
+                        console.log('selecting: '+ id)
+                
+                        window.location.href = `/gurus/` + id
+                    }) //end CLICK
                 
             }  //end FOR LOOP
 
@@ -257,7 +260,7 @@ function makeDIVguru(myGuruObj){
         $('#errorSpan').text("")
         for (x = 0; x < myGuruObj.length; x++){  
                    
-            $('#results').append(`<div id="${myGuruObj[x]._id}" class="card guru-card newCard" style="width: 18rem; " >` +
+            $('#results').append(`<div id="${myGuruObj[x]._id}" class=" guru-card newCard" style="" >` +
             
             `<h5 class="card-title">${myGuruObj[x].name}</h5>`+ 
             `<div class="card-body">${myGuruObj[x].activities}</h5>`+  

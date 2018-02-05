@@ -37,9 +37,30 @@
     text-align: center;
 }
 
+#activities-main{
+    
+    /*border: 1px solid blue;*/
+}
+
+.row-adjust{
+    
+}
+.col-adjust{
+    border: 0px solid blue;
+    
+}
+
+#results{
+    
+    border: 0px solid blue;
+}
+
 .activity-card{
     height:150px;
+    margin:5px;
+    border:0px solid rgb(25, 145, 145);
     border-radius: 15px 15px 15px 15px;
+    float: left;
 }
 
 .activity-card p{
@@ -50,6 +71,36 @@
     text-shadow: -1px 0 white, 0 1px darkgrey, 1px 0 black, 0 -1px white;
     
 }
+
+.activities-guru-card{
+
+    width: 200px;;
+    height:100%;
+    margin:5px;
+    border:1px solid rgb(25, 145, 145);
+    border-radius: 15px 15px 15px 15px;
+    float: left;
+    text-align: center
+}
+
+.activities-guru-card ul{
+    list-style-type:none;
+    margin: 0px;
+}
+.activities-guru-card li{
+    margin-left:-40px;
+    margin-top:10px;
+}
+
+
+.card-title{    /* Activities/GURU Cards */
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:0px;
+    
+}
+
 
 /* ---- ACTIVITIES ------*/
 
@@ -322,5 +373,58 @@
     background-position: top; 
     background-size: cover;
 }
+/* ------- MAIN PICTURES ------------*/
+
+.activity-guru-picture{   /* -- DIV -- */
+    background-image: url("");
+    background-repeat: no-repeat;
+    background-attachment: ;
+    background-position: ; 
+    background-size: cover;
+    border:  0px blue solid;
+
+    max-width: 850px;
+    max-height: 400px;
+    position: relative;
+    overflow: hidden;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.activity-guru-picture img{
+    max-width: 850px;
+    max-height: 100%;
+    width:100%;
+   height:100%;
+
+   display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.act-h2{
+    position: absolute;
+    bottom: 8px;
+    left: 60px;
+    z-index: 2;
+
+    font-size: 40pt;
+    color: white;
+    text-shadow: 1px 0 white, 0 3px teal, 1px 0 black, 0 0px white;
+
+}
+
+#activity-description{
+    margin-top: 15px;
+    width:75%;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 
 /* ---- END ACTIVITIES ------*/
