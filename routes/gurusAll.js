@@ -28,7 +28,7 @@ gurusAllRouter.get('/', (req, res) => {
 gurusAllRouter.get('/search/:term', (req, res) => {
   const regex1 = new RegExp(req.params.term,'i');
   console.log('Search Term (server side)  :' , req.params.term)
-  Guru.find({$or: [{name: regex1}, {studio: regex1}]}, (err, results) => {
+  Guru.find({$or: [{name: regex1}, {studio: regex1}, {zip: regex1}]}, (err, results) => {
     console.log('RESULTS   :', results  )
     res.json(results)
   })

@@ -11,9 +11,9 @@
 <br>
     <div class="row-fluid activity-guru-picture" id="" >
      <img src="<%= activity.picture_URL %>" class="">
-          <h2 class="act-h2"><%= activity.type %></h2>
+          <h2 class="act-h2 call-<%= activity.css %>"><%= activity.type %></h2>
     </div>
-    <p id="activity-description"><%= activity.description %></p>
+    <p id="activity-description" ><%= activity.description %></p>
      
   <br>
 
@@ -50,7 +50,7 @@
               <% }) %>
             
             </ul>
-          </div>
+          </div> <!-- end card-body -->
         </div> <!-- end activities -->
   <% }) %>
   </div> <!-- END RESULTS -->

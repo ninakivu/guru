@@ -19,12 +19,30 @@
   
   <div id='results'>
   <% gurus.forEach((guru) => { %>  <!-- new METHOD to go through object -->
-    <div id="<%= guru.id %>"  class="card guru-card" style="width: 18rem; " >
-      <div class="card-body">
+    <div id="<%= guru.id %>"  class="card guru-card activities-guru-card" style="width: 18rem; " >
+        <div class="card-body">
+            <h5 class="card-title"><%= guru.name %></h5>
+            
+            Location: <%= guru.zip %>
+            <ul>
+                <li><b>Specialties:</b></li>
+            <% guru.activities.forEach((activity) => { %>
+                
+               <% for (x=0; x <  activities.length; x++) { %>
+                            <% if (activities[x].id === String(activity)) { %>
+                                <li><%= activities[x].type %></li>
+                                <% } %>
+                  <% } %> 
+              <% }) %>
+            
+            </ul>
+          </div> <!-- end card-body -->
+    
+      <!-- <div class="card-body">
         <h5 class="card-title"><%= guru.name %></h5>
         <p class="card-text"><%= guru.activities %></p>
-      </div>
-    </div> 
+      </div> -->
+    </div>  <!-- end guru card -->
   <% }) %>
 </div>
 

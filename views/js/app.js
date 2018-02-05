@@ -16,7 +16,10 @@ $searchField.keydown(function (e) {
 
 function runSearch(){
     var searchText = $searchField.val()
+
     $searchField.val('')
+    $('.newCard').remove()
+
     var options = {
         url:'/activities/search/'+ searchText,
         method: 'get',
@@ -226,12 +229,14 @@ var $allGurusBtn = $('#allGurusBtn')
 
 $searchGuruField.keydown(function (e) {
     if (e.which == 13) {
-        runSearch()
+        runSearchGuru()
+        $('.newCard').remove()
     }
 })
 $searchGuruBtn.on('click' , function(){
     console.log('btn working')
     runSearchGuru()
+    $('.newCard').remove()
 })
 
 function runSearchGuru(){
@@ -260,12 +265,17 @@ function makeDIVguru(myGuruObj){
         $('#errorSpan').text("")
         for (x = 0; x < myGuruObj.length; x++){  
                    
-            $('#results').append(`<div id="${myGuruObj[x]._id}" class=" guru-card newCard" style="" >` +
-            
+            $('#results').append(`<div id="${myGuruObj[x]._id}" class=" guru-card newCard activities-guru-card" style="" >` +
+            ' <div class="card-body">' +
             `<h5 class="card-title">${myGuruObj[x].name}</h5>`+ 
-            `<div class="card-body">${myGuruObj[x].activities}</h5>`+  
-            '</div></div>')
+            '<ul><li><b>Location:</b></li>' +
+            `<li>${myGuruObj[x].zip}</li></ul></div>`)
+            
+            
+            // `<div class="">${myGuruObj[x].activities}</h5>`+  
+            // '</div></div>')
             console.log('building card  :' , myGuruObj[x]._id)
+            console.log('MY OBEJECT *******************  :' , myGuruObj)
             $('.guru-card').on('click', function(){
 
                 var id = $(this).attr("id")
@@ -288,6 +298,8 @@ $allGurusBtn.on('click', function(){
     $('.newCard').remove()
     $('.card').show()
 }) 
+
+
 
 ////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\

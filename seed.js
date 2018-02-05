@@ -13,27 +13,33 @@ var gurus = [
   {
     name: "Mark Strong",
     email: "mark@guru.com",
-    studio: "Get Strong West LA"
+    studio: "Get Strong West LA",
+    zip:"91792"
+
   },
   {
     name: "Philippe",
     email: "philippe@guru.com",
-    studio: "Brutal Gym"
+    studio: "Brutal Gym",
+    zip:"90038"
   },
   {
     name: "Dylan",
     email: "dylan@guru.com",
-    studio: "Get Shredded"
+    studio: "Get Shredded",
+    zip:"90272"
   },
   {
     name: "Ninja",
     email: "ninja@guru.com",
-    studio: "Ninja"
+    studio: "Ninja",
+    zip:"90291"
   },
   {
     name: "Jimmy",
     email: "jimmy@guru.com",
-    studio: "Take Breaks"
+    studio: "Take Breaks",
+    zip:"90038"
   },
 ]
 
