@@ -267,6 +267,8 @@ function makeDIVguru(myGuruObj){
                    
             $('#results').append(`<div id="${myGuruObj[x]._id}" class=" guru-card newCard activities-guru-card" style="" >` +
             ' <div class="card-body">' +
+            '<div id="card-profile-div">'+
+            '<img id="card-profile" src="'+myGuruObj[x].picture_url + '"></div>' +
             `<h5 class="card-title">${myGuruObj[x].name}</h5>`+ 
             '<ul><li><b>Location:</b></li>' +
             `<li>${myGuruObj[x].zip}</li></ul></div>`)
