@@ -112,11 +112,6 @@ app.use('/studios', studioRoutes)
 app.use('/auth/facebook', facebookRoutes)
 
 
-////////// Google Maps:
-
-var googleMapsClient = require('@google/maps').createClient({
-  key: 'AIzaSyCta033lPO-tJ92SIazzsIWrMWrW5SxFzk'
-});
   
 
 

@@ -26,4 +26,12 @@ facebookRouter.get('/callback', passport.authenticate('user-fb-login', {
   successRedirect: '/activities'
 }))
 
+facebookRouter.get('/guru', passport.authenticate('guru-fb-login', { scope: ['email']}))
+
+facebookRouter.get('/callback/guru', passport.authenticate('guru-fb-login', {
+  failureRedirect: '/',
+  successRedirect: '/activities'
+}))
+
+
 module.exports = facebookRouter
