@@ -12,7 +12,15 @@ const
 gurusAllRouter.get('/', (req, res) => {
   Guru.find({}, (err, allDemGurus) => {
     if(err) return console.log(err)
-    res.render('guru-index', {gurus: allDemGurus, user: req.user})
+          Activity.find({}, (err, allDemActivities) => {
+            if(err) return console.log(err)   
+             console.log('PRINT ACTIVITIES  :', allDemActivities)
+            console.log('Current User:  ', req.user)
+            res.render('guru-index', {gurus: allDemGurus, user: req.user, activities: allDemActivities})
+        
+          })
+    
+    
   })
 })
 
@@ -42,7 +50,7 @@ gurusAllRouter.post('/', (req,res) => {
   
 })
 
-// Show a specific Guru:
+// Show a specific Guru:    
 gurusAllRouter.get('/:id', (req, res) => {
   Guru.findById(req.params.id).populate('activities').populate('studios').exec((err, thatGuru) => {
     if(err) return console.log(err)

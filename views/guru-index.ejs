@@ -16,12 +16,13 @@
   <button type="search"  id="allGurusBtn" class="btn btn-info">All Gurus</button>
   <span id="errorSpan"></span>
   <br>
+  
   <div id='results'>
   <% gurus.forEach((guru) => { %>  <!-- new METHOD to go through object -->
     <div id="<%= guru.id %>"  class="card guru-card" style="width: 18rem; " >
       <div class="card-body">
         <h5 class="card-title"><%= guru.name %></h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <p class="card-text"><%= guru.activities %></p>
       </div>
     </div> 
   <% }) %>

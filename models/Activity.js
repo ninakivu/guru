@@ -3,7 +3,8 @@ const
   activitySchema = new mongoose.Schema({
     type: {type: String},
     picture_URL: {type: String},
-    css: {type: String}
+    css: {type: String},
+    description:{type: String}
   })
 
 const Activity = mongoose.model('Activity', activitySchema)

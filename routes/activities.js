@@ -34,13 +34,17 @@ activityRouter.get('/search/:term', (req, res) => {
 // END POST/SEARCH all activities:
 
 
-// SHOW a specific activity:
+// SHOW a specific activity:    //********** 
 activityRouter.get('/:id', (req, res) => {
   Activity.findById(req.params.id, (err, datActivity) => {
       if(err) return console.log(err)   
       Guru.find({activities: req.params.id}, (err, allGurusBy) =>{
         if(err) return console.log(err)  
-        res.render('activity-gurus', {user: req.user, activity: datActivity, gurus: allGurusBy })
+          Activity.find({}, (err, allActivities) => {
+            if(err) return console.log(err)  
+            res.render('activity-gurus', {user: req.user, activity: datActivity, gurus: allGurusBy, allAct: allActivities })
+          })
+        
       })
       
     })
@@ -74,8 +78,11 @@ activityRouter.post('/', (req, res) => {
 activityRouter.get('/:id/gurus', (req, res) => {
   Guru.find({activities: req.params.id}, (err, allActiveGuru) => {
     console.log(allActiveGuru)
+    
     res.render('activity-gurus', {guru: allActiveGuru})
+  
   })
 })
 
 module.exports = activityRouter
+
