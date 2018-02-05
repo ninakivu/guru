@@ -98,15 +98,29 @@ passport.use('guru-local-login', new LocalStrategy({
 passport.use(new FacebookStrategy({
     clientID: appId,
     clientSecret: appSecret,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    profileURL: 'https://graph.facebook.com/v2.10/me',
+    authorizationURL: 'https://www.facebook.com/v2.10/dialog/oauth',
+    tokenURL: 'https://graph.facebook.com/v2.10/oauth/access_token',
+    profileFields: ['id', 'name', 'email', 'location']
   },
   function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      console.log(profile)
+      var me = new User({
+          email: profile.emails[0].value,
+          name: profile.name
+      })
+    User.findOrCreate({ 
+        facebookId: profile.id, 
+        name: profile.name, 
+        email: profile.email 
+    }, function (err, user) {
       return cb(err, user);
     });
   }
 ));
 
+console.log(User.findOrCreate)
 
 
 module.exports = passport //passport is now configured with our strategies 
