@@ -102,31 +102,35 @@ passport.use('guru-local-login', new LocalStrategy({
 passport.use('guru-fb-login', new FacebookStrategy({
     clientID: appId,
     clientSecret: appSecret,
-    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    callbackURL: "http://localhost:3000/auth/facebook/callback/guru",
     profileURL: 'https://graph.facebook.com/v2.10/me',
     authorizationURL: 'https://www.facebook.com/v2.10/dialog/oauth',
     tokenURL: 'https://graph.facebook.com/v2.10/oauth/access_token',
+    enableProof: true,
     profileFields: ['id', 'name', 'email', 'location']
   },
-  function(accessToken, refreshToken, profile, cb) {
-    var me = new Guru({
-        email: profile.emails[0].value,
-        name: profile.name
-    })
-    Guru.findOne({ email: me.email }, function(err, guru) {
-        if(err) return done(err)
-        if(!guru) {
-            me.save(function(err, me) {
-                if(err) return done(err)
-                done(null,me)
-            })
-        } else {
-            console.log(guru)
-            done(null, guru)
-        }
-    })
+  function(accessToken, refreshToken, profile, done) {
+    console.log("USING FB STRATEGY FOR GURU YAAAY")
+  var me = new Guru({
+      email: profile.emails[0].value,
+      name: profile.name.givenName,
+      class: "guru"
+  })
+  Guru.findOne({ email: me.email }, function(err, guru) {
+      if(err) return done(err)
+      if(!guru) {
+          console.log(me)
+          me.save(function(err, me) {
+              if(err) return done(err)
+              done(null,me)
+          })
+      } else {
+          console.log(guru)
+          done(null, guru)
+      }
+  })
 
-    console.log(profile)
+  console.log(profile)
 }
 ))
 
@@ -143,18 +147,21 @@ passport.use('guru-fb-login', new FacebookStrategy({
         profileURL: 'https://graph.facebook.com/v2.10/me',
         authorizationURL: 'https://www.facebook.com/v2.10/dialog/oauth',
         tokenURL: 'https://graph.facebook.com/v2.10/oauth/access_token',
+        enableProof: true,
         profileFields: ['id', 'name', 'email', 'location']
       },
       function(accessToken, refreshToken, profile, done) {
           console.log("USING FB STRATEGY")
         var me = new User({
             email: profile.emails[0].value,
-            name: profile.name
+            name: profile.name,
+            class: "user"
         })
         User.findOne({ email: me.email }, function(err, user) {
             if(err) return done(err)
             if(!user) {
                 console.log(me)
+                me.class = "user"
                 me.save(function(err, me) {
                     if(err) return done(err)
                     done(null,me)
