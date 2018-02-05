@@ -66,7 +66,7 @@ guruRouter.get('/guru-edit', isLoggedIn, (req, res) => {
   })
 })
 
-// Edit guru:
+// Update guru:
 guruRouter.patch('/guru-edit', isLoggedIn, (req, res) => {
   console.log('PATCH TRIGGERED')
   console.log(req.body)

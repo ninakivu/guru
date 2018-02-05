@@ -9,9 +9,15 @@ const
   bodyParser = require('body-parser'),
   session = require('express-session'),
   MongoDBStore = require('connect-mongodb-session')(session),
+  
+  require('dotenv').config(),
   passport = require('passport'),
+  FacebookStrategy = require('passport-facebook').Strategy,
   passportConfig = require('./config/passport.js'),
   methodOverride = require('method-override'),
+
+  appId = process.env.APP_ID,
+  appSecret = process.env.APP_SECRET,
 
 // Routes:
   userRoutes = require('./routes/users.js'),
@@ -50,6 +56,16 @@ app.use(bodyParser.json())
 app.use(flash())
 app.use(methodOverride('_method'))  //Method Override
 app.use(express.static(`${__dirname}/views`))
+
+app.get('/auth/facebook',
+  passport.authenticate('facebook'));
+ 
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/' }),
+  function(req, res) {
+    // Successful authentication, redirect home. 
+    res.redirect('/activities');
+  });
 
 
 // ejs configuration
