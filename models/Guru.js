@@ -9,7 +9,8 @@ const
     activities: [{type: mongoose.Schema.Types.ObjectId, ref: 'Activity'}], 
     studios: [{type: mongoose.Schema.Types.ObjectId, ref: 'Studio'}], 
     reviews: [String],
-    picture_url: {type: 'string'}
+    picture_url: {type: 'string'},
+    facebookId: String
   })
 
 guruSchema.methods.generateHash = function(password){   //takes password and encodes it. Make Hash of the user
