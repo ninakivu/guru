@@ -102,7 +102,7 @@ passport.use('guru-local-login', new LocalStrategy({
 passport.use('guru-fb-login', new FacebookStrategy({
     clientID: appId,
     clientSecret: appSecret,
-    callbackURL: "http://localhost:3000/auth/facebook/callback/guru",
+    callbackURL: "/auth/facebook/callback/guru",
     profileURL: 'https://graph.facebook.com/v2.10/me',
     authorizationURL: 'https://www.facebook.com/v2.10/dialog/oauth',
     tokenURL: 'https://graph.facebook.com/v2.10/oauth/access_token',
@@ -143,7 +143,7 @@ passport.use('guru-fb-login', new FacebookStrategy({
     passport.use('user-fb-login', new FacebookStrategy({
         clientID: appId,
         clientSecret: appSecret,
-        callbackURL: "http://localhost:3000/auth/facebook/callback",
+        callbackURL: "/auth/facebook/callback",
         profileURL: 'https://graph.facebook.com/v2.10/me',
         authorizationURL: 'https://www.facebook.com/v2.10/dialog/oauth',
         tokenURL: 'https://graph.facebook.com/v2.10/oauth/access_token',

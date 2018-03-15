@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 Activity = require("./models/Activity.js")
 Guru = require("./models/Guru.js")
 Studio = require("./models/Studio.js")
-mongoConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/guru'
+mongoConnectionString = "mongodb://ninakivu:123@ds131139.mlab.com:31139/guru"
 
 
 // mongoose connection:
